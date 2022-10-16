@@ -4,6 +4,7 @@ import move
 
 def main():
      board = display.generate()
+     print(move.validateMoveWP(6,0,5,1,board))
 
      p1move = user.get_move()
 
