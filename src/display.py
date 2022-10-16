@@ -1,3 +1,6 @@
+import os
+import pprint
+
 def generate():
     board = [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -10,3 +13,13 @@ def generate():
     [0, 0, 0, 0, 0, 0, 0, 0],
 ]
     return board
+
+def clear():
+    if os.name == 'posix':
+        os.system('clear')
+    else:
+        os.system('cls')
+
+def show(board):
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(board)
