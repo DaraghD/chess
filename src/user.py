@@ -5,9 +5,9 @@ def get_move():
     mfile = input("Enter the file for square to move:")
     mrank = input("Enter the rank for square to move:")
 
-    piece = (pfile, prank)
+    piece = (int(pfile), int(prank))
 
-    square = (mfile, mrank)
+    square = (int(mfile), int(mrank))
 
     return (piece, square)
 
