@@ -13,18 +13,19 @@ class Piece:
 
 BPawn = Piece("black", "P", False)
 WPawn = Piece("white", "P", False)
+Empty = Piece("empty", "empty",False)
 
 
 def generate():
     board = [
-        [0, 0, 0, 0, 0, 0, 0, 0],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, ],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, ],
-        [0, 0, 0, 0, 0, 0, 0, 0],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
     ]
     return board
 
