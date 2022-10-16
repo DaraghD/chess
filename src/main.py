@@ -1,5 +1,4 @@
 import display
-import pprint
 import user
 import move
 import bmove
@@ -7,14 +6,14 @@ import bmove
 def main():
     global board
     board = display.generate()
+    display.show(board)
+
     while True:
         p1moved = 0
-        print(move.validateMoveWP(6, 0, 5, 1, board))
 
         while p1moved == 0:
             pfile = int(input("Enter the file for piece to move:"))
             prank = int(input("Enter the rank for piece to move:"))
-
             mfile = int(input("Enter the file for square to move:"))
             mrank = int(input("Enter the rank for square to move:"))
 
@@ -29,8 +28,8 @@ def main():
                     else:
                         print("Invalid move")
 
-        pp = pprint.PrettyPrinter(indent=4)
-        pp.pprint(board)
+        display.clear()
+        display.show(board)
 
 main()
 #player 2
