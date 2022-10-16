@@ -41,3 +41,4 @@ def validateMoveBP(pos1row, pos1column, pos2row, pos2column, board):
                 return False
     else:
         return False
+
