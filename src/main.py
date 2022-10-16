@@ -6,10 +6,16 @@ def main():
      board = display.generate()
      print(move.validateMoveWP(6,0,5,1,board))
 
-     p1move = user.get_move()
+     pfile = int(input("Enter the file for piece to move:"))
+     prank = int(input("Enter the rank for piece to move:"))
 
-     if move.validateMoveWP(p1move[0][0], p1move[0][1], p1move[1][0], p1move[1][0], board):
-         board[p1move[1][0]][p1move[1][1]] = board[p1move[0][0]][p1move[0][1]]
+     mfile = int(input("Enter the file for square to move:"))
+     mrank = int(input("Enter the rank for square to move:"))
+
+
+     if move.validateMoveWP(pfile, prank, mfile, mrank, board):
+         print("done")
+         board[pfile][prank] = board[mfile][mrank]
 
 main()
 
