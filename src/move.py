@@ -1,15 +1,17 @@
 from dataclasses import dataclass
 
 
-def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board): # 0 = black, 1 = white
+def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):  # 0 = black, 1 = white
     flagleft = False
     flagright = False
-    if board[pos1row][pos1column].piece == "P" and board[pos1row][pos1column].colour == "white":#checks if its whitepawn
+    if board[pos1row][pos1column].piece == "P" and board[pos1row][
+        pos1column].colour == "white":  # checks if its whitepawn
         if board[pos1row][pos1column].hasMoved == False:
             if board[pos2row][pos2column] == board[pos1row - 2][pos2column]:
+                board[pos1row][pos1column].hasMoved = True
                 return True
 
-        if board[pos1row - 1][pos1column - 1].colour == "black": # checks if blackpiece is in capture  range
+        if board[pos1row - 1][pos1column - 1].colour == "black":  # checks if blackpiece is in capture  range
             flagleft = True
         if board[pos1row - 1][pos1column + 1].colour == "black":
             flagright = True
@@ -34,14 +36,15 @@ def validateMoveBP(pos1row, pos1column, pos2row, pos2column, board):
 
     if board[pos1row][pos1column].colour == 0 and board[pos1row][pos1column].piece == "P":
         if board[pos1row][pos1column].hasMoved == False:
-            if board[pos2row][pos2column] == board[pos1row+2][pos2column] and board[pos2row][pos2column].piece ==\
+            if board[pos2row][pos2column] == board[pos1row + 2][pos2column] and board[pos2row][pos2column].piece == \
                     "empty":
+                board[pos1row][pos1column].hasMoved = True
                 return True
-        if board[pos1row + 1][pos1column - 1].piece == "P" and  board[pos1row + 1][pos1column - 1].colour == "white":
+        if board[pos1row + 1][pos1column - 1].piece == "P" and board[pos1row + 1][pos1column - 1].colour == "white":
             flagleftB = True
         if board[pos1row + 1][pos1column + 1].piece == "P" and board[pos1row + 1][pos1column + 1].colour == "white":
             flagrightB = True
-        if board[pos2row][pos2column] == board[pos1row+1][pos1column] and isinstance(board[pos2row][pos2column],str):
+        if board[pos2row][pos2column] == board[pos1row + 1][pos1column] and board[pos2row][pos2column].colour == "black":
             return False
         if board[pos2row][pos2column].piece == "empty":
             if pos2row == pos1row + 1 and pos2column == pos1column:
@@ -59,7 +62,6 @@ def validateMoveBP(pos1row, pos1column, pos2row, pos2column, board):
     else:
         return False
 
-#def validateMoveWK(pos1row, pos1column, pos2row, pos2column, board):
+# def validateMoveWK(pos1row, pos1column, pos2row, pos2column, board):
 
-#WK = White knight, should work for BK aswell- can move in any direction// this function needs to be redone
-
+# WK = White knight, should work for BK aswell- can move in any direction// this function needs to be redone
