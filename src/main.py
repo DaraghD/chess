@@ -1,16 +1,10 @@
-board = [
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    ["BP","BP","BP","BP","BP","BP","BP","BP",],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    ["WP","WP","WP","WP","WP","WP","WP","WP",],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-]
+import display
+import user
 
 def main():
-    x = 0
+     board = display.generate()
+
+     move = user.get_move()
 
 main()
 
