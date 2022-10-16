@@ -1,20 +1,17 @@
 from dataclasses import dataclass
 
-@dataclass
-class Piece:
-    colour: int
-    piece: int
-    hasMoved: bool
-    rank: int
 
-
-def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
+def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board): # 0 = black, 1 = white
     flagleft = False
     flagright = False
-    if board[pos1row][pos1column] == "WP":
-        if board[pos1row - 1][pos1column - 1] == "BP":
+    if board[pos1row][pos1column].piece == "P" and board[pos1row][pos1column].colour == "white":#checks if its whitepawn
+        if board[pos1row][pos1column].hasMoved == False:
+            if board[pos2row][pos2column] == board[pos1row + 2][pos2column]:
+                return True
+
+        if board[pos1row - 1][pos1column - 1].colour == "black": # checks if blackpiece is in capture  range
             flagleft = True
-        if board[pos1row - 1][pos1column + 1] == "BP":
+        if board[pos1row - 1][pos1column + 1] == 0:
             flagright = True
         if board[pos2row][pos2column] == 0:
             if pos2row == pos1row - 1 and pos2column == pos1column:
@@ -34,10 +31,14 @@ def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
 def validateMoveBP(pos1row, pos1column, pos2row, pos2column, board):
     flagleftB = False
     flagrightB = False
-    if board[pos1row][pos1column] == "BP":
-        if board[pos1row + 1][pos1column - 1] == "WP":
+
+    if board[pos1row][pos1column].colour == 0 and board[pos1row][pos1column].piece == "P":
+        if board[pos1row][pos1column].hasMoved == False:
+            if board[pos2row][pos2column] == board[pos1row+2][pos2column]:
+                return True
+        if board[pos1row + 1][pos1column - 1].piece == "P" and  board[pos1row + 1][pos1column - 1].colour == "white":
             flagleftB = True
-        if board[pos1row + 1][pos1column + 1] == "WP":
+        if board[pos1row + 1][pos1column + 1].piece == "P" and board[pos1row + 1][pos1column + 1].colour == "white":
             flagrightB = True
         if board[pos2row][pos2column] == board[pos1row+1][pos1column] and isinstance(board[pos2row][pos2column],str):
             return False

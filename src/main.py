@@ -8,6 +8,7 @@ def main():
 
     board = display.generate()
     display.show(board)
+    print(board[6][0].colour)
     print(move.validateMoveBP(3,5,5,0,board))
     while True:
         p1moved = 0
