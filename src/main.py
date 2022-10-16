@@ -2,9 +2,10 @@ import display
 import pprint
 import user
 import move
-
+import bmove
 
 def main():
+    global board
     board = display.generate()
     while True:
         p1moved = 0
@@ -32,3 +33,7 @@ def main():
         pp.pprint(board)
 
 main()
+#player 2
+# knights
+#show board func
+#multiplayer
