@@ -3,11 +3,12 @@ import user
 import move
 import bmove
 
+
 def main():
-    global board
+
     board = display.generate()
     display.show(board)
-
+    print(move.validateMoveBP(3,5,5,0,board))
     while True:
         p1moved = 0
 
@@ -24,10 +25,11 @@ def main():
                         board[mfile][mrank] = board[pfile][prank]
                         board[pfile][prank] = 0
                         p1moved = 1
+
                         continue
                     else:
                         print("Invalid move")
-
+        bmove.blackmove(board)
         display.clear()
         display.show(board)
 

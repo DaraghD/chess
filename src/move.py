@@ -5,6 +5,7 @@ class Piece:
     colour: int
     piece: int
     hasMoved: bool
+    rank: int
 
 
 def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
@@ -34,18 +35,22 @@ def validateMoveBP(pos1row, pos1column, pos2row, pos2column, board):
     flagleftB = False
     flagrightB = False
     if board[pos1row][pos1column] == "BP":
-        if board[pos1row + 1][pos1column - 1] == "WP" or "WK":
+        if board[pos1row + 1][pos1column - 1] == "WP":
             flagleftB = True
-        if board[pos1row + 1][pos1column + 1] == "WP" or "WK":
+        if board[pos1row + 1][pos1column + 1] == "WP":
             flagrightB = True
+        if board[pos2row][pos2column] == board[pos1row+1][pos1column] and isinstance(board[pos2row][pos2column],str):
+            return False
         if board[pos2row][pos2column] == 0:
             if pos2row == pos1row + 1 and pos2column == pos1column:
                 return True
     if flagleftB or flagrightB:
         if board[pos2row][pos2column] == board[pos1row + 1][pos1column - 1] and flagleftB:
+            print("yOU KILLED HIM POGGERS")
             return True
         else:
             if board[pos2row][pos2column] == board[pos1row + 1][pos1column + 1] and flagrightB:
+                print("yOU KILLED HIM POGGERS")
                 return True
             else:
                 return False
