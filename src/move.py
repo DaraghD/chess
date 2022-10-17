@@ -10,7 +10,8 @@ def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):  # 0 = blac
             if board[pos2row][pos2column] == board[pos1row - 2][pos2column]:
                 board[pos1row][pos1column].hasMoved = True
                 return True
-
+        else:
+            print("has moved is true??")
         if board[pos1row - 1][pos1column - 1].colour == "black":  # checks if blackpiece is in capture  range
             flagleft = True
         if board[pos1row - 1][pos1column + 1].colour == "black":
@@ -40,6 +41,8 @@ def validateMoveBP(pos1row, pos1column, pos2row, pos2column, board):
                     "empty":
                 board[pos1row][pos1column].hasMoved = True
                 return True
+        if board[pos1row+1][pos1column] == board[pos2row][pos2column] and board[pos2row][pos2column].piece == "empty":
+            return True
         if board[pos1row + 1][pos1column - 1].piece == "P" and board[pos1row + 1][pos1column - 1].colour == "white":
             flagleftB = True
         if board[pos1row + 1][pos1column + 1].piece == "P" and board[pos1row + 1][pos1column + 1].colour == "white":
