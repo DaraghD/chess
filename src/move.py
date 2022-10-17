@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 
-def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):  # 0 = black, 1 = white
+def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
     if board[pos1row][pos1column].hasMoved == False and board[pos2row][pos2column] == board[pos1row - 1][pos2column] and \
             board[pos2row][pos2column].piece == "empty":
         board[pos1row][pos1column].hasMoved = True

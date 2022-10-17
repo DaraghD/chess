@@ -8,21 +8,24 @@ def main():
 
     board = display.generate()
     display.show(board)
-##print(move.validateMoveBP(1,0,2,0,board))
-    print(move.validateMoveWP(6,0,4,0,board))
-    print(move.validateMoveWP(6, 0, 5, 1, board))
+#print(move.validateMoveBP(1,0,2,0,board))
+    #print(move.validateMoveWP(6,0,4,0,board))
+   #print(move.validateMoveWP(6, 0, 5, 1, board))
 
 
     while True:
         p1moved = 0
 
         while p1moved == 0:
-            pfile = int(input("Enter the file for piece to move:"))
-            prank = int(input("Enter the rank for piece to move:"))
-            mfile = int(input("Enter the file for square to move:"))
-            mrank = int(input("Enter the rank for square to move:"))
+            pfile = int(input("Enter the rank for piece to move:"))
+            prank = int(input("Enter the file for piece to move:"))
+            mfile = int(input("Enter the rank for square to move:"))
+            mrank = int(input("Enter the file for square to move:"))
+            if pfile or prank or mfile or mrank > 7:
+                print("invalid input")
+                continue
 
-            match board[pfile][prank].colour: #also have to match .colour- i think u can move enemy pawns with this?
+            match board[pfile][prank].colour:
                 case "W":
                     match board[pfile][prank].piece:
                         case "P":
@@ -34,7 +37,7 @@ def main():
                                 continue
                             else:
                                 print("Invalid move")
-        bmove.blackmove(board)
+        #bmove.blackmove(board)
         display.clear()
         display.show(board)
 
