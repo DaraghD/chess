@@ -20,10 +20,10 @@ def generate():
     board = [
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, ],
+        [Empty, WPawn, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
-        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
-        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [Empty, BPawn, Empty, Empty, Empty, Empty, Empty, Empty],
         [WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, ],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
     ]
