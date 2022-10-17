@@ -11,8 +11,8 @@ class Piece:
 ## PIECE, 0 = PAWN,
 ## 0 = Black, 1 = white
 
-BPawn = Piece("black", "P", False)
-WPawn = Piece("white", "P", False)
+BPawn = Piece("B", "P", False)
+WPawn = Piece("W", "P", False)
 Empty = Piece("empty", "empty",False)
 
 
@@ -37,6 +37,31 @@ def clear():
         os.system('cls')
 
 
-def show(board):
+def show_debug(board):
     pp = pprint.PrettyPrinter(indent=4)
     pp.pprint(board)
+
+def show(board):
+    i = 0
+    x = 0
+    c = 0
+
+    while c <= 63:
+
+        print("|", end="")
+
+
+        if board[i][x].piece == "empty":
+            print("  ", end="")
+        else:
+            print(f"{board[i][x].colour}{board[i][x].piece}", end="")
+
+        if x == 7:
+            i += 1
+            print("|")
+            x = 0
+        if i > 7:
+            break
+        
+        c += 1
+        x += 1

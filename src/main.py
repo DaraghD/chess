@@ -22,7 +22,7 @@ def main():
             mrank = int(input("Enter the rank for square to move:"))
 
             match board[pfile][prank].colour: #also have to match .colour- i think u can move enemy pawns with this?
-                case "white":
+                case "W":
                     match board[pfile][prank].piece:
                         case "P":
                             if move.validateMoveWP(pfile, prank, mfile, mrank, board):
