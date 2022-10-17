@@ -21,9 +21,7 @@ def main():
             prank = int(input("Enter the file for piece to move:"))
             mfile = int(input("Enter the rank for square to move:"))
             mrank = int(input("Enter the file for square to move:"))
-            if pfile or prank or mfile or mrank > 7:
-                print("invalid input")
-                continue
+
 
             match board[pfile][prank].colour:
                 case "W":

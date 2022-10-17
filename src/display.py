@@ -1,5 +1,6 @@
 import os
 import pprint
+import pandas as pd
 from dataclasses import dataclass
 
 
@@ -14,8 +15,15 @@ class Piece:
 BPawn = Piece("B", "P", False)
 WPawn = Piece("W", "P", False)
 Empty = Piece("empty", "empty",False)
+#pieceicons ={WPawn:"♙",
+         ##    BPawn: "♟",
+           #  Empty: "🨀"
 
+          #   }
+#def iconBoard(board,dict):
+   # newBoardtemp = (pd.Series(board).map(dict))
 
+    #return list(newBoardtemp)
 def generate():
     board = [
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
