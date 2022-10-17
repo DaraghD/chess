@@ -39,6 +39,8 @@ def main():
                                 print("Invalid move")
         #bmove.blackmove(board)
         display.clear()
+        new_board = display.new_board(board)
+        display.show_debug(new_board)
         display.show(board)
 
 main()
