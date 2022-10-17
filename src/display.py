@@ -46,7 +46,7 @@ def show(board):
     x = 0
     c = 0
 
-    while c <= 63:
+    while True:
 
         print("|", end="")
 
@@ -56,7 +56,7 @@ def show(board):
         else:
             print(f"{board[i][x].colour}{board[i][x].piece}", end="")
 
-        if x == 7:
+        if x >= 7:
             i += 1
             print("|")
             x = 0

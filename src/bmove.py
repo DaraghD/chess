@@ -13,7 +13,7 @@ def blackmove(board):
         mrank = random.randrange(0, 7, 1)
         print(pfile,prank,mfile,mrank)
         match board[pfile][prank].colour:
-            case "black":
+            case "B":
                 print("found colour")
                 match board[pfile][prank].piece:
                     case "P":

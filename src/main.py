@@ -11,7 +11,7 @@ def main():
 ##print(move.validateMoveBP(1,0,2,0,board))
     print(move.validateMoveWP(6,0,5,0,board))
     print(move.validateMoveWP(6,3,4,3,board)) 
-    print(move.validateMoveWP(6,7,5,6,board))
+    #print(move.validateMoveWP(6,7,5,6,board))
     while True:
         p1moved = 0
 
