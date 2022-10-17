@@ -40,7 +40,8 @@ def main():
         new_board = display.new_board(board)
         display.show_debug(new_board)
         display.show(board)
-
+        PIECEBOARD = iconBoard(board,pieceicons)
+        print(PIECEBOARD)
 main()
 #player 2
 # knights

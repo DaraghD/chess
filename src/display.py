@@ -4,7 +4,7 @@ import pandas as pd
 from dataclasses import dataclass
 
 
-@dataclass
+@dataclass(eq=False,unsafe_hash=True)
 class Piece:
     colour: str
     piece: str
@@ -14,16 +14,22 @@ class Piece:
 
 BPawn = Piece("B", "P", False)
 WPawn = Piece("W", "P", False)
-Empty = Piece("empty", "empty",False)
-#pieceicons ={WPawn:"♙",
-         ##    BPawn: "♟",
-           #  Empty: "🨀"
+Empty = Piece("empty", "empty", False)
+hashWPawn = hash(WPawn)
+hashBPawn = hash(BPawn)
+hashEmpty = hash(Empty)
 
-          #   }
-#def iconBoard(board,dict):
-   # newBoardtemp = (pd.Series(board).map(dict))
+pieceicons = {hashWPawn: "♙",
+              hashBPawn: "♟",
+              hashEmpty: "🨀"}
 
-    #return list(newBoardtemp)
+
+def iconBoard(board, dict):
+    newBoardtemp = (pd.Series(board).map(dict))
+
+    return list(newBoardtemp)
+
+
 def generate():
     board = [
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
@@ -49,6 +55,7 @@ def show_debug(board):
     pp = pprint.PrettyPrinter(indent=4)
     pp.pprint(board)
 
+
 def show(board):
     i = 0
     x = 0
@@ -72,7 +79,8 @@ def show(board):
             x += 1
         if i > 7:
             break
-        
+
+
 def new_board(board):
     i = 0
     x = 0
@@ -102,7 +110,7 @@ def new_board(board):
             x = 0
         if i > 7:
             break
-        
+
         c += 1
         x += 1
 
