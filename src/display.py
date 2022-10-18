@@ -112,7 +112,7 @@ def show_emoji(board):
             print("  ", end="")
         else:
             p = board[i][x].colour + board[i][x].piece
-            print(f" {emojis[p]}", end="")
+            print(f" {emoji_dict[p]}", end="")
 
 
         if x == 7:
