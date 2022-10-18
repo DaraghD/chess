@@ -1,6 +1,3 @@
-from dataclasses import dataclass
-
-
 def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
     if board[pos1row][pos1column].hasMoved == True and board[pos2row][pos2column] == board[pos1row - 2][pos1column]:
         return False
@@ -24,9 +21,6 @@ def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
         return False
 
 
-# def validateMoveWK(pos1row, pos1column, pos2row, pos2column, board):
-
-# WK = White knight, should work for BK aswell- can move in any direction// this function needs to be redone
 def validateMoveBP(pos1row, pos1column, pos2row, pos2column, board):
     # assuming it is a blackpawn{not checking this}
     if board[pos1row][pos1column].hasMoved == True and board[pos2row][pos2column] == board[pos1row + 2][pos1column]:
@@ -77,3 +71,57 @@ def validateMoveKnight(pos1row, pos1column, pos2row, pos2column,  # pycharm form
             return False
     else:
         return False
+
+
+# for row in abs(pos1row, pos2row):
+def validateMoveRK(pos1row, pos1column, pos2row, pos2column,
+                   board):  # CASTLING NOT TAKEN INTO ACCOUNT (YET) .hasMoved with king.hasMoved mb
+    clearpath = False
+    flag = 0
+    if board[pos1row][pos1column].colour != board[pos2row][pos2column].colour or board[pos2row][
+        pos2column].piece == "empty":
+        if pos1column == pos2column:  ##we know if this is true its moving vertically
+            if pos1row > pos2row:  # if this is true its moving "up" , white to black
+                row = 0
+                while row < abs(pos1row - pos2row) - 1:
+                    row = row + 1
+                    if board[pos1row - row][pos1column].piece == "empty":
+                        if row == abs(pos1row - pos2row) - 1:
+                            return True
+                        continue
+                    else:
+                        return False
+                        break
+                    """""
+            else: # its moving down
+                for row in abs(pos1row, pos2row)-1:
+                    if board[pos1row+row][pos1column].piece !="empty":
+                        clearpath = False
+                        return False
+
+        elif pos1column < pos2column: # its moving vertically and in this case right ->
+            for column in abs(pos1column,pos2column):
+                if board[pos1column+column].piece != "empty":
+                    clearpath = False
+                    return False
+            else: #moving left
+                for column in abs(pos1column, pos2column):
+                    if board[pos1column-column].piece != "empty":
+                        clearpath = False
+                        return False
+                    elif:
+                        column
+"""
+
+    else:
+        return False
+
+
+""""
+def validateMoveB(pos1row,pos1column,pos2row,pos2column,board):
+    if board[pos1row][pos1column].colour != board[pos2row][pos2column].colour or board[pos2row][
+        pos2column].piece == "empty":
+        if 
+    else:
+        return False
+"""

@@ -2,27 +2,33 @@ import os
 import pprint
 from dataclasses import dataclass
 
+
 @dataclass
 class Piece:
     colour: str
     piece: str
     hasMoved: bool
 
+
 BPawn = Piece("B", "P", False)
 WPawn = Piece("W", "P", False)
-Empty = Piece("empty", "empty",False)
-WKnight = Piece("W","K",False)
-BKnight = Piece("B","K",False)
+Empty = Piece("empty", "empty", False)
+WKnight = Piece("W", "K", False)
+BKnight = Piece("B", "K", False)
+WRook = Piece("W", "R", False)
+BRook = Piece("B", "R", False)
+WBishop = Piece("W", "B", False)
+BBishop = Piece("B", "B", False)
 
 
 def generate():
     board = [
-        [Empty, WKnight, Empty, Empty, Empty, Empty, WKnight, Empty],
+        [Empty, BKnight, Empty, Empty, Empty, Empty, BKnight, Empty],
         [BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, ],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
-        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [WRook, Empty, BPawn, Empty, Empty, Empty, Empty, WRook],
         [WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, ],
         [Empty, WKnight, Empty, Empty, Empty, Empty, WKnight, Empty],
     ]
@@ -100,9 +106,10 @@ def new_board(board):
         x += 1
 
     return new_board
-def show_emoji(board):
 
-    emoji_dict = {"WP": "♙", "BP": "♟", "WK":"♘"}
+
+def show_emoji(board):
+    emoji_dict = {"WP": "♙", "BP": "♟", "WK": "♞", "BK": "♘", "WR": "♜"}
     i = 0
     x = 0
     c = 0
@@ -116,7 +123,6 @@ def show_emoji(board):
         else:
             p = board[i][x].colour + board[i][x].piece
             print(f" {emoji_dict[p]}", end="")
-
 
         if x == 7:
             i += 1
