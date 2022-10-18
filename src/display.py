@@ -17,14 +17,14 @@ BKnight = Piece("B","K",False)
 
 def generate():
     board = [
-        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [Empty, WKnight, Empty, Empty, Empty, Empty, WKnight, Empty],
         [BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, ],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, ],
-        [Empty, Empty, WKnight, Empty, Empty, Empty, Empty, Empty],
+        [Empty, WKnight, Empty, Empty, Empty, Empty, WKnight, Empty],
     ]
     return board
 
