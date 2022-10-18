@@ -33,6 +33,13 @@ def main():
                                 board[pfile][prank] = Empty
                                 p1moved = 1
                                 continue
+                        case "K":
+                            if move.validateMoveKnight(pfile,prank,mfile,mrank,board):
+                                print("done")
+                                board[mfile][mrank] = board[pfile][
+                                prank]  # replaces square moved to with this piece chosen
+                                board[pfile][prank] = Empty
+                                p1moved = 1
                             else:
                                 print("Invalid move")
         #bmove.blackmove(board)

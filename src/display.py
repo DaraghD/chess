@@ -11,6 +11,9 @@ class Piece:
 BPawn = Piece("B", "P", False)
 WPawn = Piece("W", "P", False)
 Empty = Piece("empty", "empty",False)
+WKnight = Piece("W","K",False)
+BKnight = Piece("B","K",False)
+
 
 def generate():
     board = [
@@ -21,7 +24,7 @@ def generate():
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, ],
-        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [Empty, Empty, WKnight, Empty, Empty, Empty, Empty, Empty],
     ]
     return board
 
@@ -99,7 +102,7 @@ def new_board(board):
     return new_board
 def show_emoji(board):
 
-    emoji_dict = {"WP": "♙", "BP": "♟"}
+    emoji_dict = {"WP": "♙", "BP": "♟", "WK":"♘"}
     i = 0
     x = 0
     c = 0
@@ -112,7 +115,7 @@ def show_emoji(board):
             print("  ", end="")
         else:
             p = board[i][x].colour + board[i][x].piece
-            print(f" {emojis[p]}", end="")
+            print(f" {emoji_dict[p]}", end="")
 
 
         if x == 7:
