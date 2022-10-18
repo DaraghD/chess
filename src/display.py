@@ -1,34 +1,16 @@
 import os
 import pprint
-import pandas as pd
 from dataclasses import dataclass
 
-
-@dataclass(eq=False,unsafe_hash=True)
+@dataclass
 class Piece:
     colour: str
     piece: str
     hasMoved: bool
-## PIECE, 0 = PAWN,
-## 0 = Black, 1 = white
 
 BPawn = Piece("B", "P", False)
 WPawn = Piece("W", "P", False)
-Empty = Piece("empty", "empty", False)
-hashWPawn = hash(WPawn)
-hashBPawn = hash(BPawn)
-hashEmpty = hash(Empty)
-
-pieceicons = {hashWPawn: "♙",
-              hashBPawn: "♟",
-              hashEmpty: "🨀"}
-
-
-def iconBoard(board, dict):
-    newBoardtemp = (pd.Series(board).map(dict))
-
-    return list(newBoardtemp)
-
+Empty = Piece("empty", "empty",False)
 
 def generate():
     board = [
@@ -115,3 +97,30 @@ def new_board(board):
         x += 1
 
     return new_board
+def show_emoji(board):
+
+    emojis = {"WP": "♙", "BP": "♟"}
+    i = 0
+    x = 0
+    c = 0
+
+    while True:
+
+        print("|", end="")
+
+        if board[i][x].piece == "empty":
+            print("  ", end="")
+        else:
+            p = board[i][x].colour + board[i][x].piece
+            print(f" {emojis[p]}", end="")
+
+
+        if x == 7:
+            i += 1
+            print("|")
+            x = 0
+        else:
+            c += 1
+            x += 1
+        if i > 7:
+            break
