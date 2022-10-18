@@ -99,7 +99,7 @@ def new_board(board):
     return new_board
 def show_emoji(board):
 
-    emojis = {"WP": "♙", "BP": "♟"}
+    emoji_dict = {"WP": "♙", "BP": "♟"}
     i = 0
     x = 0
     c = 0
