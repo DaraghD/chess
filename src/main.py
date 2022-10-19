@@ -9,10 +9,7 @@ from display import *
 def main():
     board = display.generate()
     display.show(board)
-    print(move.validateMoveRK(5,0,2,0,board))
-    # print(move.validateMoveBP(1,0,2,0,board))
-    # print(move.validateMoveWP(6,0,4,0,board))
-    # print(move.validateMoveWP(6, 0, 5, 1, board))
+    display.show_emoji(board)
 
     while True:
         p1moved = 0
