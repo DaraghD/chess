@@ -9,6 +9,7 @@ from display import *
 def main():
     board = display.generate()
     display.show(board)
+    print("")
     display.show_emoji(board)
 
     while True:
