@@ -23,7 +23,7 @@ BBishop = Piece("B", "B", False)
 
 def generate():
     board = [
-        [Empty, BKnight, Empty, Empty, Empty, Empty, BKnight, Empty],
+        [BRook, BKnight, Empty, Empty, Empty, Empty, BKnight, BRook],
         [BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, ],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
@@ -109,7 +109,7 @@ def new_board(board):
 
 
 def show_emoji(board):
-    emoji_dict = {"WP": "♙", "BP": "♟", "WK": "♘", "BK": "♞", "WR": "♖"}
+    emoji_dict = {"WP": "♙", "BP": "♟", "WK": "♘", "BK": "♞", "WR": "♖", "BR": "♜"}
     i = 0
     x = 0
     c = 0
