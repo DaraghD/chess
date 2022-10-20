@@ -48,8 +48,7 @@ def validateMoveBP(pos1row, pos1column, pos2row, pos2column, board):
 def validateMoveKnight(pos1row, pos1column, pos2row, pos2column,  # pycharm formatting is why \
                        board):  # not seperate colour, can do this in the function
     # checks if piece moving to is not friendly or its empty
-    if board[pos2row][pos2column].colour != board[pos1row][pos1column].colour or board[pos2row][
-        pos2column].piece == "empty":
+    if board[pos2row][pos2column].colour != board[pos1row][pos1column].colour:
         # 8 possible moves, using or operator to check, we know its empty cause of above^
         # up move /left right
         if board[pos2row][pos2column] == board[pos1row - 2][pos1column - 1] or board[pos2row][pos2column] == \
@@ -76,11 +75,9 @@ def validateMoveKnight(pos1row, pos1column, pos2row, pos2column,  # pycharm form
 # for row in abs(pos1row, pos2row):
 def validateMoveRK(pos1row, pos1column, pos2row, pos2column,
                    board):  # CASTLING NOT TAKEN INTO ACCOUNT (YET) .hasMoved with king.hasMoved mb
-    clearpath = False
-    flag = 0
-    if board[pos1row][pos1column].colour != board[pos2row][pos2column].colour or board[pos2row][
-        pos2column].piece == "empty":
-        if pos1column == pos2column:  ##we know if this is true its moving vertically
+    if board[pos1row][pos1column].colour != board[pos2row][
+        pos2column].colour:  # empty has a colour so just this is fine
+        if pos1column == pos2column:  # we know if this is true its moving vertically
             if pos1row > pos2row:  # if this is true its moving "up" , white to black
                 row = 0
                 while row < abs(pos1row - pos2row) - 1:
@@ -91,33 +88,47 @@ def validateMoveRK(pos1row, pos1column, pos2row, pos2column,
                         continue
                     else:
                         return False
-                        break
-                    """""
-            else: # its moving down
-                for row in abs(pos1row, pos2row)-1:
-                    if board[pos1row+row][pos1column].piece !="empty":
-                        clearpath = False
+
+            if pos1row < pos2row: # its moving down
+                print("test1")
+                row = 0
+                while row < abs(pos1row - pos2row) - 1:
+                    print("test2")
+                    row = row + 1
+                    if board[pos1row + row][
+                        pos1column].piece == "empty":  # empty as we already checked for attacking in first if statement
+                        if row == abs(pos1row - pos2row) - 1:
+                            print("test3")
+                            return True
+                        continue
+                    else:
                         return False
 
-        elif pos1column < pos2column: # its moving vertically and in this case right ->
-            for column in abs(pos1column,pos2column):
-                if board[pos1column+column].piece != "empty":
-                    clearpath = False
+        if pos1column < pos2column:  # its moving vertically and in this case right ->
+            col = 0
+            while col < abs(pos1column - pos2column) - 1:
+                col = col + 1
+                if board[pos1row][pos1column + col].piece == "empty":
+                    if col == abs(pos1column - pos2column) - 1:
+                        return True
+                    continue
+                else:
                     return False
-            else: #moving left
-                for column in abs(pos1column, pos2column):
-                    if board[pos1column-column].piece != "empty":
-                        clearpath = False
+
+
+            else:  # elif or else idk , moving <-
+                col = 0
+                while col < abs(pos1column - pos2column) - 1:
+                    col = col + 1
+                    if board[pos1row][pos1column - col].piece == "empty":
+                        if col == abs(pos1column - pos2column) - 1:
+                            return True
+                        continue
+                    else:
                         return False
-                    elif:
-                        column
-"""
-
-    else:
-        return False
 
 
-""""
+"""""
 def validateMoveB(pos1row,pos1column,pos2row,pos2column,board):
     if board[pos1row][pos1column].colour != board[pos2row][pos2column].colour or board[pos2row][
         pos2column].piece == "empty":
