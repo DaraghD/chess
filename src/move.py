@@ -1,5 +1,5 @@
 def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
-    if board[pos1row][pos1column].hasMoved == True and pos2row == pos1row - 2:
+    if board[pos1row][pos1column].hasMoved and pos2row == pos1row - 2:
         return False
     if board[pos1row][pos1column].hasMoved == False and board[pos2row][pos2column] == board[pos1row - 2][
         pos2column] and \
@@ -23,7 +23,7 @@ def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
 
 def validateMoveBP(pos1row, pos1column, pos2row, pos2column, board):
     # assuming it is a blackpawn{not checking this}
-    if board[pos1row][pos1column].hasMoved == True and board[pos2row][pos2column] == board[pos1row + 2][pos1column]:
+    if board[pos1row][pos1column].hasMoved and pos2row == pos1row - 2:
         return False
     elif board[pos1row][pos1column].hasMoved == False and board[pos2row][pos2column] == board[pos1row + 2][
         pos2column] and \
