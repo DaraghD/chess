@@ -52,8 +52,7 @@ def validateMoveKnight(pos1row, pos1column, pos2row, pos2column,  # pycharm form
     if board[pos2row][pos2column].colour != board[pos1row][pos1column].colour:
         # 8 possible moves, using or operator to check, we know its empty cause of above^
         # up move /left right
-        if board[pos2row][pos2column] == board[pos1row - 2][pos1column - 1] or board[pos2row][pos2column] == \
-                board[pos1row - 2][pos1column + 1]:
+        if board[pos2row][pos2column] == board[pos1row - 2][pos1column - 1] or board[pos2row][pos2column] == board[pos1row - 2][pos1column + 1]:
             return True
         # right move , up down
         if board[pos2row][pos2column] == board[pos1row + 1][pos1column + 2] or board[pos2row][pos2column] == \

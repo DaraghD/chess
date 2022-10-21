@@ -8,23 +8,24 @@ class Piece:
     colour: str
     piece: str
     hasMoved: bool
+    EnPassant: bool
 
-
-BPawn = Piece("B", "P", False)
-WPawn = Piece("W", "P", False)
-Empty = Piece("empty", "empty", False)
-WKnight = Piece("W", "K", False)
-BKnight = Piece("B", "K", False)
-WRook = Piece("W", "R", False)
-BRook = Piece("B", "R", False)
-WBishop = Piece("W", "B", False)
-BBishop = Piece("B", "B", False)
+BPawn = Piece("B", "P", False, False)
+WPawn = Piece("W", "P", False, False)
+Empty = Piece("empty", "empty", False, False)
+WKnight = Piece("W", "K", False, False)
+BKnight = Piece("B", "K", False, False)
+WRook = Piece("W", "R", False, False)
+BRook = Piece("B", "R", False, False)
+WBishop = Piece("W", "B", False, False)
+BBishop = Piece("B", "B", False, False)
+WQueen = Piece("W","Q",False, False)
 
 
 def generate():
     board = [
         [BRook, BKnight, Empty, Empty, Empty, Empty, BKnight, BRook],
-        [BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, ],
+        [BPawn, WPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, ],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [WRook, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
@@ -109,7 +110,7 @@ def new_board(board):
 
 
 def show_emoji(board):
-    emoji_dict = {"WP": "♙", "BP": "♟", "WK": "♘", "BK": "♞", "WR": "♖", "BR": "♜"}
+    emoji_dict = {"WP": "♙", "BP": "♟", "WK": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ":"♕"}
     i = 0
     x = 0
     c = 0

@@ -1,8 +1,7 @@
-import display
 import user
 import move
 import bmove
-
+import display
 from display import *
 
 
@@ -16,35 +15,38 @@ def main():
         p1moved = 0
 
         while p1moved == 0:
-            pfile = int(input("Enter the rank for piece to move:"))
-            prank = int(input("Enter the file for piece to move:"))
-            mfile = int(input("Enter the rank for square to move:"))
-            mrank = int(input("Enter the file for square to move:"))
+            pos1row = int(input("Enter the rank for piece to move:"))
+            pos1col = int(input("Enter the file for piece to move:"))
+            pos2row = int(input("Enter the rank for square to move:"))
+            pos2col = int(input("Enter the file for square to move:"))
 
-            match board[pfile][prank].colour:
+            match board[pos1row][pos1col].colour:
                 case "W":
-                    match board[pfile][prank].piece:
+                    match board[pos1row][pos1col].piece:
                         case "P":
-                            if move.validateMoveWP(pfile, prank, mfile, mrank, board):
+                            if move.validateMoveWP(pos1row, pos1col, pos2row, pos2col, board):
                                 print("done")
-                                board[mfile][mrank] = board[pfile][prank]  # replaces square moved to with this piece chosen
-                                board[pfile][prank] = Empty
+                                board[pos2row][pos2col] = board[pos1row][
+                                    pos1col]  # replaces square moved to with this piece chosen
+                                board[pos1row][pos1col] = Empty
                                 p1moved = 1
+                                if pos2row == 0:
+                                    board[pos2row][pos2col] = WQueen
                                 continue
                             else:
                                 print("invalid")
                         case "K":
-                            if move.validateMoveKnight(pfile, prank, mfile, mrank, board):
+                            if move.validateMoveKnight(pos1row, pos1col, pos2row, pos2col, board):
                                 print("done")
-                                board[mfile][mrank] = board[pfile][prank]  
-                                board[pfile][prank] = Empty
+                                board[pos2row][pos2col] = board[pos1row][pos1col]
+                                board[pos1row][pos1col] = Empty
                                 p1moved = 1
                                 continue
                         case "R":
-                            if move.validateMoveRK(pfile, prank, mfile, mrank, board):
+                            if move.validateMoveRK(pos1row, pos1col, pos2row, pos2col, board):
                                 print("done")
-                                board[mfile][mrank] = board[pfile][prank]
-                                board[pfile][prank] = Empty
+                                board[pos2row][pos2col] = board[pos1row][pos1col]
+                                board[pos1row][pos1col] = Empty
                                 p1moved = 1
                                 continue
                             else:
