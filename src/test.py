@@ -1,12 +1,21 @@
 import move
-import display
+from display import *
+
+board = [
+        [BRook, BKnight, Empty, Empty, Empty, Empty, BKnight, BRook],
+        [BPawn, BPawn, Empty, Empty, Empty, Empty, Empty, Empty, ],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [Empty, Empty, Empty, WRook, Empty, Empty, Empty, Empty],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [WPawn, WPawn, Empty, Empty, Empty, Empty, Empty, Empty, ],
+        [Empty, WKnight, Empty, Empty, Empty, WRook, WKnight, Empty],
+    ]
 
 
-board = display.generate()
-print(move.validateMoveRK(4,3,1,3,board))# works
-print(move.validateMoveRK(4,3,5,3,board))# returns none?
-print(move.validateMoveRK(4,3,4,0,board))# returning none
-print(move.validateMoveRK(4,3,4,6,board))#works
-print(move.validateMoveRK(3,7,3,0,board))
-print(board[4][3])
-print(move.validateMoveRK(4, 3, 5, 3, board))
+
+print(move.validateMoveRK(3,3,0,3,board)) # moving up
+print(move.validateMoveRK(3,3,5,3,board)) # down
+print(move.validateMoveRK(3,3,3,0,board)) # left
+print(move.validateMoveRK(3,3,3,5,board)) # right
+move.validateMoveRK(3,3,3,5,board)

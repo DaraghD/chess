@@ -1,5 +1,5 @@
 def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
-    if board[pos1row][pos1column].hasMoved and pos2row == pos1row - 2:
+    if board[pos1row][pos1column].hasMoved and pos2row == pos1row - 2 and pos1column == pos2column:
         return False
     if board[pos1row][pos1column].hasMoved == False and board[pos2row][pos2column] == board[pos1row - 2][
         pos2column] and \
@@ -23,7 +23,8 @@ def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
 
 def validateMoveBP(pos1row, pos1column, pos2row, pos2column, board):
     # assuming it is a blackpawn{not checking this}
-    if board[pos1row][pos1column].hasMoved and pos2row == pos1row - 2:
+    if board[pos1row][
+        pos1column].hasMoved and pos2row == pos1row - 2 and pos1column == pos2column:  # check column aswell?
         return False
     elif board[pos1row][pos1column].hasMoved == False and board[pos2row][pos2column] == board[pos1row + 2][
         pos2column] and \
@@ -75,8 +76,13 @@ def validateMoveKnight(pos1row, pos1column, pos2row, pos2column,  # pycharm form
 # for row in abs(pos1row, pos2row):
 def validateMoveRK(pos1row, pos1column, pos2row, pos2column,
                    board):  # CASTLING NOT TAKEN INTO ACCOUNT (YET) .hasMoved with king.hasMoved mb
+
     if board[pos1row][pos1column].colour != board[pos2row][
-        pos2column].colour:  # empty has a colour so just this is fine
+        pos2column].colour:
+        if abs(pos1row - pos2row) - 1 == 0:
+            return True
+        if abs(pos1column - pos2column) - 1 == 0:
+            return True
         if pos1column == pos2column:  # we know if this is true its moving vertically
             if pos1row > pos2row:  # if this is true its moving "up" , white to black
                 row = 0
@@ -89,16 +95,13 @@ def validateMoveRK(pos1row, pos1column, pos2row, pos2column,
                     else:
                         return False
 
-            if pos1row < pos2row: # its moving down
-                print("test1")
+            if pos1row < pos2row:  # its moving down
                 row = 0
                 while row < abs(pos1row - pos2row) - 1:
-                    print("test2")
                     row = row + 1
                     if board[pos1row + row][
                         pos1column].piece == "empty":  # empty as we already checked for attacking in first if statement
                         if row == abs(pos1row - pos2row) - 1:
-                            print("test3")
                             return True
                         continue
                     else:
@@ -115,17 +118,18 @@ def validateMoveRK(pos1row, pos1column, pos2row, pos2column,
                 else:
                     return False
 
-
-            else:  # elif or else idk , moving <-
-                col = 0
-                while col < abs(pos1column - pos2column) - 1:
-                    col = col + 1
-                    if board[pos1row][pos1column - col].piece == "empty":
-                        if col == abs(pos1column - pos2column) - 1:
-                            return True
-                        continue
-                    else:
-                        return False
+        if pos1column > pos2column:  # elif or else idk , moving <-
+            col = 0
+            print("hello")
+            while col < abs(pos1column - pos2column) - 1:  #
+                col = col + 1
+                if board[pos1row][pos1column - col].piece == "empty":
+                    print("first if")
+                    if col == abs(pos1column - pos2column) - 1:
+                        return True
+                    continue
+                else:
+                    return False
 
 
 """""
