@@ -1,15 +1,14 @@
 import user
 import move
 import bmove
-import display
 from display import *
 
 
 def main():
-    board = display.generate()
-    display.show(board)
+    board = generate()
+    show(board)
     print("")
-    display.show_emoji(board)
+    show_emoji(board)
 
     while True:
         p1moved = 0
@@ -25,7 +24,6 @@ def main():
                     match board[pos1row][pos1col].piece:
                         case "P":
                             if move.validateMoveWP(pos1row, pos1col, pos2row, pos2col, board):
-                                print("done")
                                 board[pos2row][pos2col] = board[pos1row][
                                     pos1col]  # replaces square moved to with this piece chosen
                                 board[pos1row][pos1col] = Empty
@@ -44,7 +42,6 @@ def main():
                                 continue
                         case "R":
                             if move.validateMoveRK(pos1row, pos1col, pos2row, pos2col, board):
-                                print("done")
                                 board[pos2row][pos2col] = board[pos1row][pos1col]
                                 board[pos1row][pos1col] = Empty
                                 p1moved = 1
@@ -52,11 +49,11 @@ def main():
                             else:
                                 print("Invalid move")
         # bmove.blackmove(board)
-        display.clear()
+        clear()
         # new_board = display.new_board(board)
         # display.show_debug(new_board)
         # display.show(board)
-        display.show_emoji(board)
+        show_emoji(board)
 
 
 main()

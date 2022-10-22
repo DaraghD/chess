@@ -1,12 +1,11 @@
 def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
     if board[pos1row][pos1column].hasMoved and pos2row == pos1row - 2 and pos1column == pos2column:
         return False
-    if board[pos1row][pos1column].hasMoved == False and board[pos2row][pos2column] == board[pos1row - 2][
-        pos2column] and \
+    if board[pos1row][pos1column].hasMoved == False and pos2row == pos1row - 2 and \
             board[pos2row][pos2column].piece == "empty":
         board[pos1row][pos1column].hasMoved = True
         return True  # this is for "double jump"
-    elif board[pos2row][pos2column] == board[pos1row - 1][pos1column] and board[pos2row][pos2column].piece == "empty":
+    elif pos2row == pos1row - 1 and board[pos2row][pos2column].piece == "empty":
         board[pos1row][pos1column].hasMoved = True
         return True  # this is for moving 1 up, checks if piece moving to is 1 from the pawn, and if its empty
     elif board[pos2row][pos2column].colour == "B" and board[pos2row][pos2column] == board[pos1row - 1][
