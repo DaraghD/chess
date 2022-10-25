@@ -331,8 +331,8 @@ def check_win(board):  # checks legal moves for king, if = 0, 8 possible moves w
                 match col.piece:
                     case 'K':
                         king_counter += 1
-                        king_row = row
-                        king_col = col
+                        king_row = rowi
+                        king_col = colx
                 if colx == 7:
                     colx = 0
                 else:
