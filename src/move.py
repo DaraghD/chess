@@ -1,5 +1,6 @@
 from display import generate_checkboard
 
+
 def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
     if board[pos1row][pos1column].hasMoved and pos2row == pos1row - 2 and pos1column == pos2column:
         return False
@@ -260,10 +261,11 @@ def validate_queen(pos1row, pos1col, pos2row, pos2col, board):
         else:
             return False
 
+
 def king_move(pos1row, pos1col, pos2row, pos2col, board):
     if board[pos2row][pos2col].colour == board[pos1row][pos1col].colour:
         return False
-    check_board = generate_checkboard(pos1row,pos1col,board)
+    check_board = generate_checkboard(pos1row, pos1col, board)
     if check_check(pos2row, pos2col, check_board):
         print("MOVE WOULD PUT IN CHECK")
         return False
@@ -282,7 +284,7 @@ def king_move(pos1row, pos1col, pos2row, pos2col, board):
     return False
 
 
-def check_check(pos2row, pos2col, check_board):
+def check_check(pos2row, pos2col, check_board):  # first 2 arguments can be any position/future/present
     i = 0
     x = 0
     for row in check_board:
@@ -291,14 +293,22 @@ def check_check(pos2row, pos2col, check_board):
                 case 'B':
                     match col.piece:
                         case 'Q':
-                            print("Q")
-                            print(i)
-                            print(x)
-                            if validate_queen(i, x, pos2row, pos2col,check_board):
-                                print(1)
+                            if validate_queen(i, x, pos2row, pos2col, check_board):
                                 return True
                         case 'B':
                             if validate_bishop(i, x, pos2row, pos2col, check_board):
+                                return True
+                        case 'P':
+                            if validateMoveBP(i, x, pos2row, pos2col, check_board):
+                                return True
+                        case 'N':
+                            if validateMoveKnight(i, x, pos2row, pos2col, check_board):
+                                return True
+                        case 'R':
+                            if validateMoveRK(i, x, pos2row, pos2col, check_board):
+                                return True
+                        case 'K':
+                            if king_move(i, x, pos2row, pos2col, check_board):
                                 return True
             if x == 7:
                 x = 0
@@ -306,3 +316,50 @@ def check_check(pos2row, pos2col, check_board):
                 x += 1
 
         i += 1
+
+
+def check_win(board):  # checks legal moves for king, if = 0, 8 possible moves with king, if check
+    rowi = 0
+    colx = 0
+    check = False
+    king_row = 0
+    king_col = 0
+    king_counter = 0
+    while king_counter < 2:
+        for row in board:
+            for col in row:
+                match col.piece:
+                    case 'K':
+                        king_counter += 1
+                        king_row = row
+                        king_col = col
+                if colx == 7:
+                    colx = 0
+                else:
+                    colx += 1
+            rowi += 1
+
+        if check_check(king_row, king_col, board):
+            check = True
+        if check:  # checking all 8 possible moves for king, if any are true return false as king is not in checkkmate
+            if king_move(king_row, king_col, king_row - 1, king_col - 1, board):
+                return False
+            if king_move(king_row, king_col, king_row, king_col - 1, board):
+                return False
+            if king_move(king_row, king_col, king_row + 1, king_col - 1, board):
+                return False
+            if king_move(king_row, king_col, king_row + 1, king_col, board):
+                return False
+            if king_move(king_row, king_col, king_row - 1, king_col, board):
+                return False
+            if king_move(king_row, king_col, king_row - 1, king_col + 1, board):
+                return False
+            if king_move(king_row, king_col, king_row, king_col + 1, board):
+                return False
+            if king_move(king_row, king_col, king_row + 1, king_col + 1, board):
+                return False
+            else:
+                return True #if king has no possible moves and check== true , checkmate
+
+    else:
+        return False
