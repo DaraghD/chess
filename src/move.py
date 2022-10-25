@@ -117,9 +117,9 @@ def validateMoveRK(pos1row, pos1column, pos2row, pos2column,
                 else:
                     return False
 
-        if pos1column > pos2column:  # elif or else idk , moving <-
+        if pos1column > pos2column:  #  moving <-
             col = 0
-            print("hello")
+            print("test1")
             while col < abs(pos1column - pos2column) - 1:  #
                 col = col + 1
                 if board[pos1row][pos1column - col].piece == "empty":
@@ -202,7 +202,7 @@ def line_move(pos1row, pos1column, pos2row, pos2column, board):  # this is a com
 def diagonal_move(pos1row, pos1col, pos2row, pos2col, board):
     tile_gap = abs(pos1row - pos2row) - 1
     if board[pos1row][pos1col].colour != board[pos2row][pos2col].colour:
-        if tile_gap == 0:
+        if tile_gap == 0 and pos1row != pos2row and pos1col != pos2col:
             return True
         # 4 possibilites for direction
         if pos1row > pos2row and pos1col > pos2col:  # up and left

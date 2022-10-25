@@ -27,7 +27,7 @@ def generate():
         [BRook, BKnight, Empty, Empty, Empty, Empty, BKnight, BRook],
         [BPawn, WPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, ],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
-        [WQueen, Empty, Empty,Empty , Empty, Empty, Empty, WBishop],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn],
