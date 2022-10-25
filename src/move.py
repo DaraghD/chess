@@ -154,7 +154,7 @@ def line_move(pos1row, pos1column, pos2row, pos2column, board):  # this is a com
             if pos1row > pos2row:
                 row = 0
                 while row < abs(pos1row - pos2row) - 1:
-                    row = row + 1
+                    row += 1
                     if board[pos1row - row][pos1column].piece == "empty":
                         if row == abs(pos1row - pos2row) - 1:
                             return True
@@ -165,7 +165,7 @@ def line_move(pos1row, pos1column, pos2row, pos2column, board):  # this is a com
             if pos1row < pos2row:
                 row = 0
                 while row < abs(pos1row - pos2row) - 1:
-                    row = row + 1
+                    row += 1
                     if board[pos1row + row][
                         pos1column].piece == "empty":
                         if row == abs(pos1row - pos2row) - 1:
@@ -177,7 +177,7 @@ def line_move(pos1row, pos1column, pos2row, pos2column, board):  # this is a com
         if pos1column < pos2column:
             col = 0
             while col < abs(pos1column - pos2column) - 1:
-                col = col + 1
+                col += 1
                 if board[pos1row][pos1column + col].piece == "empty":
                     if col == abs(pos1column - pos2column) - 1:
                         return True
@@ -189,7 +189,7 @@ def line_move(pos1row, pos1column, pos2row, pos2column, board):  # this is a com
             col = 0
             print("hello")
             while col < abs(pos1column - pos2column) - 1:  #
-                col = col + 1
+                col += 1
                 if board[pos1row][pos1column - col].piece == "empty":
                     print("first if")
                     if col == abs(pos1column - pos2column) - 1:
@@ -264,3 +264,19 @@ def validate_queen(pos1row,pos1col,pos2row,pos2col,board):
 
         else: #down and right
 """
+def king_move(pos1row, pos1col, pos2row, pos2col, board):
+    if board[pos2row][pos2col].colour == board[pos1row][pos1col].colour:
+        return False
+    if abs(pos1row - pos2row) == 1:
+        if abs(pos1col - pos2col) == 1:
+            return True
+
+    elif pos1row == pos2row:
+        if abs(pos1col - pos2col) == 1:
+            return True
+
+    elif pos1col == pos2col:
+        if abs(pos1row - pos2row) == 1:
+            return True
+
+    return False

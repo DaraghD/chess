@@ -13,13 +13,14 @@ class Piece:
 BPawn = Piece("B", "P", False, False)
 WPawn = Piece("W", "P", False, False)
 Empty = Piece("empty", "empty", False, False)
-WKnight = Piece("W", "K", False, False)
+WKnight = Piece("W", "N", False, False)
 BKnight = Piece("B", "K", False, False)
 WRook = Piece("W", "R", False, False)
 BRook = Piece("B", "R", False, False)
 WBishop = Piece("W", "B", False, False)
 BBishop = Piece("B", "B", False, False)
 WQueen = Piece("W","Q",False, False)
+WKing = Piece("W","K",False, False)
 
 
 def generate():
