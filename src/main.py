@@ -10,6 +10,7 @@ def main():
     print("")
     show_emoji(board)
 
+
     while True:
         p1moved = 0
 
@@ -19,7 +20,7 @@ def main():
             pos2row = int(input("Enter the rank for square to move:"))
             pos2col = int(input("Enter the file for square to move:"))
 
-            match board[pos1row][pos1col].colour:
+            match board[move_dict[pos1row]][pos1col].colour:
                 case "W":
                     match board[pos1row][pos1col].piece:
                         case "P":

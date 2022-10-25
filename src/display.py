@@ -22,6 +22,8 @@ BBishop = Piece("B", "B", False, False)
 WQueen = Piece("W","Q",False, False)
 WKing = Piece("W","K",False, False)
 
+move_dict = {0: 'a', 'b':1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7}
+
 
 
 
@@ -34,7 +36,7 @@ def generate():
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn],
-        [WRook, WKnight, WBishop, WQueen, Empty, WBishop, WKnight, WRook],
+        [WRook, WKnight, WBishop, WQueen, WKing, WBishop, WKnight, WRook],
     ]
     return board
 
@@ -113,13 +115,13 @@ def new_board(board):
 
 
 def show_emoji(board):
-    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ":"♕","WB":"♗"}
+    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ":"♕","WB":"♗", "WK":"♔"}
     i = 0
     x = 0
     c = 0
     n = 8
 
-    print("A B C")
+    print("  A  B  C  D  E  F  G  H")
 
     while True:
 
