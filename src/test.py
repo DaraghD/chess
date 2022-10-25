@@ -11,5 +11,5 @@ board = [
                 [WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn],
                 [WRook, WKnight, WBishop, WQueen, Empty, WBishop, WKnight, WRook],
 ]
-#print(check_win(board))
-print(validateMoveKnight(0,1,4,3,board))
+print(check_win(board))
+print(validateMoveKnight(0,1,-1,-8,board))
