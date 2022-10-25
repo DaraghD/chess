@@ -15,7 +15,7 @@ BPawn = Piece("B", "P", False, False)
 WPawn = Piece("W", "P", False, False)
 Empty = Piece("empty", "empty", False, False)
 WKnight = Piece("W", "N", False, False)
-BKnight = Piece("B", "K", False, False)
+BKnight = Piece("B", "N", False, False)
 WRook = Piece("W", "R", False, False)
 BRook = Piece("B", "R", False, False)
 WBishop = Piece("W", "B", False, False)
@@ -30,8 +30,8 @@ move_dict = {0: 'a', 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7}
 
 def generate():
     board = [
-        [BRook, BKnight, Empty, Empty, Empty, Empty, BKnight, BRook],
-        [BPawn, WPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, ],
+        [BRook, BKnight, BBishop, BQueen, BKing, BBishop, BKnight, BRook],
+        [BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, ],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
@@ -122,7 +122,7 @@ def new_board(board):
 
 
 def show_emoji(board):
-    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ": "♕", "WB": "♗", "WK": "♔"}
+    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BN": "♞", "WR": "♖", "BR": "♜", "WQ": "♕", "WB": "♗", "WK": "♔", "BK": "♚", "BQ": "♛","BB": "♝"}
     i = 0
     x = 0
     c = 0
@@ -152,7 +152,7 @@ def show_emoji(board):
             break
 
 def show_emoji_black(board):
-    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ": "♕", "WB": "♗", "WK": "♔"}
+    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ": "♕", "WB": "♗", "WK": "♔", "BK": "♚", "BQ": "♛", "BR": "♜"}
     i = 7
     x = 0
     c = 0
