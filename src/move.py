@@ -1,3 +1,5 @@
+from display import generate_checkboard
+
 def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
     if board[pos1row][pos1column].hasMoved and pos2row == pos1row - 2 and pos1column == pos2column:
         return False
@@ -117,7 +119,7 @@ def validateMoveRK(pos1row, pos1column, pos2row, pos2column,
                 else:
                     return False
 
-        if pos1column > pos2column:  #  moving <-
+        if pos1column > pos2column:  # moving <-
             col = 0
             print("test1")
             while col < abs(pos1column - pos2column) - 1:  #
@@ -236,20 +238,24 @@ def diagonal_move(pos1row, pos1col, pos2row, pos2col, board):
 
     else:
         return False
-def validate_bishop(pos1row,pos1col,pos2row,pos2col,board): # maybe redundant - might help with readability in main.
-    if diagonal_move(pos1row,pos1col,pos2row,pos2col,board):
+
+
+def validate_bishop(pos1row, pos1col, pos2row, pos2col,
+                    board):  # maybe redundant - might help with readability in main.
+    if diagonal_move(pos1row, pos1col, pos2row, pos2col, board):
         return True
     else:
         return False
 
-def validate_queen(pos1row,pos1col,pos2row,pos2col,board):
+
+def validate_queen(pos1row, pos1col, pos2row, pos2col, board):
     if pos1row == pos2row or pos1col == pos2col:
-        if line_move(pos1row,pos1col,pos2row,pos2col,board):
+        if line_move(pos1row, pos1col, pos2row, pos2col, board):
             return True
         else:
             return False
     if not pos1row == pos2row or pos1col == pos2col:
-        if diagonal_move(pos1row,pos1col,pos2row,pos2col,board):
+        if diagonal_move(pos1row, pos1col, pos2row, pos2col, board):
             return True
         else:
             return False
@@ -257,7 +263,8 @@ def validate_queen(pos1row,pos1col,pos2row,pos2col,board):
 def king_move(pos1row, pos1col, pos2row, pos2col, board):
     if board[pos2row][pos2col].colour == board[pos1row][pos1col].colour:
         return False
-    if check_check(pos2row,pos2col,board):
+    check_board = generate_checkboard(pos1row,pos1col,board)
+    if check_check(pos2row, pos2col, check_board):
         print("MOVE WOULD PUT IN CHECK")
         return False
     if abs(pos1row - pos2row) == 1:
@@ -274,22 +281,22 @@ def king_move(pos1row, pos1col, pos2row, pos2col, board):
 
     return False
 
-def check_check(pos2row, pos2col, board):
+
+def check_check(pos2row, pos2col, check_board):
     i = 0
     x = 0
-    first = True
-    for row in board:
-        if not first:
-            i += 1
-            first = False
+    for row in check_board:
         for col in row:
             if col.colour == "B":
+                print("B")
                 if col.piece == "Q":
-                        if validate_queen(i,x,pos2row,pos2col,board):
-                            print(1)
-            if x == 7:
-                x = 0
-                break
+                    print("Q")
+                    print(i)
+                    print(x)
+                    if validate_queen(i, x, pos2row, pos2col,check_board):
+                        print(1)
+                        return True
+                if x == 7:
+                    x = 0
 
-
-
+        i += 1

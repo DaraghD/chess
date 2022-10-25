@@ -42,6 +42,12 @@ def generate():
     return board
 
 
+def generate_checkboard(kingrow, kingcol,board):
+    board[kingrow][kingcol] = Empty
+    check_board = board
+    return check_board  # board without king
+
+
 def clear():
     if os.name == 'posix':
         os.system('clear')
