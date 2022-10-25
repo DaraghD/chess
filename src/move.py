@@ -273,12 +273,23 @@ def king_move(pos1row, pos1col, pos2row, pos2col, board):
             return True
 
     return False
+
 def check_check(pos2row, pos2col, board):
+    i = 0
+    x = 0
+    first = True
     for row in board:
+        if not first:
+            i += 1
+            first = False
         for col in row:
-            col1 = enumerate(col)
-            row1 =enumerate(row)
             if col.colour == "B":
                 if col.piece == "Q":
-                        if validate_queen(row1,col1,pos2row,pos2col,board):
+                        if validate_queen(i,x,pos2row,pos2col,board):
                             print(1)
+            if x == 7:
+                x = 0
+                break
+
+
+
