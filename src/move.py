@@ -287,16 +287,22 @@ def check_check(pos2row, pos2col, check_board):
     x = 0
     for row in check_board:
         for col in row:
-            if col.colour == "B":
-                print("B")
-                if col.piece == "Q":
-                    print("Q")
-                    print(i)
-                    print(x)
-                    if validate_queen(i, x, pos2row, pos2col,check_board):
-                        print(1)
-                        return True
-                if x == 7:
-                    x = 0
+            match col.colour:
+                case 'B':
+                    match col.piece:
+                        case 'Q':
+                            print("Q")
+                            print(i)
+                            print(x)
+                            if validate_queen(i, x, pos2row, pos2col,check_board):
+                                print(1)
+                                return True
+                        case 'B':
+                            if validate_bishop(i, x, pos2row, pos2col, check_board):
+                                return True
+            if x == 7:
+                x = 0
+            else:
+                x += 1
 
         i += 1
