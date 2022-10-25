@@ -255,12 +255,3 @@ def validate_queen(pos1row,pos1col,pos2row,pos2col,board):
             return False
 
 
-
-"""
-        if pos1row > pos2row and pos1col < pos2col: #up and right
-
-
-        if pos1row < pos2row and pos1col > pos2col: # down and left
-
-        else: #down and right
-"""

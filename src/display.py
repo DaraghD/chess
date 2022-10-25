@@ -22,6 +22,8 @@ BBishop = Piece("B", "B", False, False)
 WQueen = Piece("W","Q",False, False)
 
 
+
+
 def generate():
     board = [
         [BRook, BKnight, Empty, Empty, Empty, Empty, BKnight, BRook],
