@@ -150,3 +150,38 @@ def show_emoji(board):
             x += 1
         if i > 7:
             break
+
+def show_emoji_black(board):
+    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ": "♕", "WB": "♗", "WK": "♔"}
+    i = 7
+    x = 0
+    c = 0
+    n = 1
+
+    print("  A  B  C  D  E  F  G  H")
+
+    while True:
+
+        print("|", end="")
+
+        if board[i][x].piece == "empty":
+            print("  ", end="")
+        else:
+            p = board[i][x].colour + board[i][x].piece
+            print(f" {emoji_dict[p]}", end="")
+
+        if x == 7:
+            i -= 1
+            print(f"| {n}")
+            x = 0
+            n += 1
+        else:
+            c += 1
+            x += 1
+        if i < 0:
+            break
+
+
+def main_menu():
+    print("1.Local\n2.Online\n3.Quit\n")
+    return input(":")
