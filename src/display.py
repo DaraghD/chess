@@ -10,6 +10,7 @@ class Piece:
     hasMoved: bool
     EnPassant: bool
 
+
 BPawn = Piece("B", "P", False, False)
 WPawn = Piece("W", "P", False, False)
 Empty = Piece("empty", "empty", False, False)
@@ -19,12 +20,12 @@ WRook = Piece("W", "R", False, False)
 BRook = Piece("B", "R", False, False)
 WBishop = Piece("W", "B", False, False)
 BBishop = Piece("B", "B", False, False)
-WQueen = Piece("W","Q",False, False)
-WKing = Piece("W","K",False, False)
+WQueen = Piece("W", "Q", False, False)
+BQueen = Piece("B", "Q", False, False)
+WKing = Piece("W", "K", False, False)
+BKing = Piece("B", "K", False, False)
 
-move_dict = {0: 'a', 'b':1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7}
-
-
+move_dict = {0: 'a', 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7}
 
 
 def generate():
@@ -115,7 +116,7 @@ def new_board(board):
 
 
 def show_emoji(board):
-    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ":"♕","WB":"♗", "WK":"♔"}
+    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ": "♕", "WB": "♗", "WK": "♔"}
     i = 0
     x = 0
     c = 0

@@ -257,6 +257,9 @@ def validate_queen(pos1row,pos1col,pos2row,pos2col,board):
 def king_move(pos1row, pos1col, pos2row, pos2col, board):
     if board[pos2row][pos2col].colour == board[pos1row][pos1col].colour:
         return False
+    if check_check(pos2row,pos2col,board):
+        print("MOVE WOULD PUT IN CHECK")
+        return False
     if abs(pos1row - pos2row) == 1:
         if abs(pos1col - pos2col) == 1:
             return True
@@ -270,3 +273,12 @@ def king_move(pos1row, pos1col, pos2row, pos2col, board):
             return True
 
     return False
+def check_check(pos2row, pos2col, board):
+    for row in board:
+        for col in row:
+            col1 = enumerate(col)
+            row1 =enumerate(row)
+            if col.colour == "B":
+                if col.piece == "Q":
+                        if validate_queen(row1,col1,pos2row,pos2col,board):
+                            print(1)
