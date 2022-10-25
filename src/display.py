@@ -13,13 +13,14 @@ class Piece:
 BPawn = Piece("B", "P", False, False)
 WPawn = Piece("W", "P", False, False)
 Empty = Piece("empty", "empty", False, False)
-WKnight = Piece("W", "K", False, False)
+WKnight = Piece("W", "N", False, False)
 BKnight = Piece("B", "K", False, False)
 WRook = Piece("W", "R", False, False)
 BRook = Piece("B", "R", False, False)
 WBishop = Piece("W", "B", False, False)
 BBishop = Piece("B", "B", False, False)
 WQueen = Piece("W","Q",False, False)
+WKing = Piece("W","K",False, False)
 
 
 
@@ -112,10 +113,13 @@ def new_board(board):
 
 
 def show_emoji(board):
-    emoji_dict = {"WP": "♙", "BP": "♟", "WK": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ":"♕","WB":"♗"}
+    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ":"♕","WB":"♗"}
     i = 0
     x = 0
     c = 0
+    n = 8
+
+    print("A B C")
 
     while True:
 
@@ -129,8 +133,9 @@ def show_emoji(board):
 
         if x == 7:
             i += 1
-            print("|")
+            print(f"| {n}")
             x = 0
+            n -= 1
         else:
             c += 1
             x += 1

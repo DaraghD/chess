@@ -33,7 +33,7 @@ def main():
                                 continue
                             else:
                                 print("invalid")
-                        case "K":
+                        case "N":
                             if move.validateMoveKnight(pos1row, pos1col, pos2row, pos2col, board):
                                 print("done")
                                 board[pos2row][pos2col] = board[pos1row][pos1col]
@@ -58,6 +58,12 @@ def main():
                                 print("Invalid move")
                         case "B":
                             if move.validate_bishop(pos1row, pos1col, pos2row, pos2col, board):
+                                board[pos2row][pos2col] = board[pos1row][pos1col]
+                                board[pos1row][pos1col] = Empty
+                                p1moved = 1
+                                continue
+                        case "K":
+                            if move.king_move(pos1row, pos1col, pos2row, pos2col, board):
                                 board[pos2row][pos2col] = board[pos1row][pos1col]
                                 board[pos1row][pos1col] = Empty
                                 p1moved = 1
