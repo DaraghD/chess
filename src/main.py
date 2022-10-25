@@ -48,6 +48,23 @@ def main():
                                 continue
                             else:
                                 print("Invalid move")
+                        case "Q":
+                            if move.validate_queen(pos1row, pos1col, pos2row, pos2col,board):
+                                board[pos2row][pos2col] = board[pos1row][pos1col]
+                                board[pos1row][pos1col] = Empty
+                                p1moved = 1
+                                continue
+                            else:
+                                print("Invalid move")
+                        case "B":
+                            if move.validate_bishop(pos1row, pos1col, pos2row, pos2col, board):
+                                board[pos2row][pos2col] = board[pos1row][pos1col]
+                                board[pos1row][pos1col] = Empty
+                                p1moved = 1
+                                continue
+                            else:
+                                print("Invalid move")
+
         # bmove.blackmove(board)
         clear()
         # new_board = display.new_board(board)

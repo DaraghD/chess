@@ -1,21 +1,20 @@
-import move
+from move import *
 from display import *
 
 board = [
-        [BRook, BKnight, Empty, Empty, Empty, Empty, BKnight, BRook],
-        [BPawn, BPawn, Empty, Empty, Empty, Empty, Empty, Empty, ],
-        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
-        [Empty, Empty, Empty, WRook, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
-        [WPawn, WPawn, Empty, Empty, Empty, Empty, Empty, Empty, ],
-        [Empty, WKnight, Empty, Empty, Empty, WRook, WKnight, Empty],
+        [Empty, Empty, WPawn, Empty, Empty, WBishop, Empty, Empty],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [Empty, Empty, Empty, WQueen, Empty, Empty, Empty, Empty],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
     ]
 
-
-
-print(move.validateMoveRK(3,3,0,3,board)) # moving up
-print(move.validateMoveRK(3,3,5,3,board)) # down
-print(move.validateMoveRK(3,3,3,0,board)) # left
-print(move.validateMoveRK(3,3,3,5,board)) # right
-move.validateMoveRK(3,3,3,5,board)
+#checking queen directions, all true
+print(validate_queen(4,3,0,1,board))
+print(validate_queen(4,3,0,3,board))
+print(validate_queen(4,3,7,3,board))
+print(validate_queen(4,3,4,7,board))
+print(validate_bishop(2,5,0,7,board))

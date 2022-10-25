@@ -27,11 +27,11 @@ def generate():
         [BRook, BKnight, Empty, Empty, Empty, Empty, BKnight, BRook],
         [BPawn, WPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, ],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
+        [WQueen, Empty, Empty,Empty , Empty, Empty, Empty, WBishop],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
         [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
-        [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
-        [WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, ],
-        [WRook, WKnight, Empty, Empty, Empty, Empty, WKnight, WRook],
+        [WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn],
+        [WRook, WKnight, WBishop, WQueen, Empty, WBishop, WKnight, WRook],
     ]
     return board
 
@@ -110,7 +110,7 @@ def new_board(board):
 
 
 def show_emoji(board):
-    emoji_dict = {"WP": "♙", "BP": "♟", "WK": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ":"♕"}
+    emoji_dict = {"WP": "♙", "BP": "♟", "WK": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ":"♕","WB":"♗"}
     i = 0
     x = 0
     c = 0
