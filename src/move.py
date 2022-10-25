@@ -207,28 +207,28 @@ def diagonal_move(pos1row, pos1col, pos2row, pos2col, board):
         # 4 possibilites for direction
         if pos1row > pos2row and pos1col > pos2col:  # up and left
             for i in range(1, tile_gap, 1):  # starts at 1, tile_gap times, 1 increment
-                if board[pos2row - i][pos2col - i].piece == "empty":
+                if board[pos1row - i][pos1col - i].piece == "empty":
                     continue
                 else:
                     return False
             return True
         if pos1row > pos2row and pos1col < pos2col:  # up and right
             for i in range(1, tile_gap, 1):
-                if board[pos2row - i][pos2col + i].piece == "empty":
+                if board[pos1row - i][pos1col + i].piece == "empty":
                     continue
                 else:
                     return False
             return True
         if pos1row < pos2row and pos1col > pos2col:  # down and left
             for i in range(1, tile_gap, 1):
-                if board[pos2row + i][pos2col - i].piece == "empty":
+                if board[pos1row + i][pos1col - i].piece == "empty":
                     continue
                 else:
                     return False
             return True
         if pos1row < pos2row and pos1col < pos2col:  # down and right
             for i in range(1, tile_gap, 1):
-                if board[pos2row + i][pos2col + i].piece == "empty":
+                if board[pos1row + i][pos1col + i].piece == "empty":
                     continue
                 else:
                     return False
