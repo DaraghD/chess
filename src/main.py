@@ -1,6 +1,3 @@
-import user
-import move
-import bmove
 from display import *
 from game import *
 
