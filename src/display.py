@@ -152,7 +152,7 @@ def show_emoji(board):
             break
 
 def show_emoji_black(board):
-    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BK": "♞", "WR": "♖", "BR": "♜", "WQ": "♕", "WB": "♗", "WK": "♔", "BK": "♚", "BQ": "♛", "BR": "♜"}
+    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BN": "♞", "WR": "♖", "BR": "♜", "WQ": "♕", "WB": "♗", "WK": "♔", "BK": "♚", "BQ": "♛","BB": "♝"}
     i = 7
     x = 0
     c = 0
