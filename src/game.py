@@ -20,7 +20,7 @@ def singleplayer():
                 case "W":
                     match board[pos1row][pos1col].piece:
                         case "P":
-                            if move.validateMoveWP(pos1row, pos1col, pos2row, pos2col, board):
+                            if move.validate_MoveWP(pos1row, pos1col, pos2row, pos2col, board):
                                 board[pos2row][pos2col] = board[pos1row][
                                     pos1col]  # replaces square moved to with this piece chosen
                                 board[pos1row][pos1col] = Empty
