@@ -2,7 +2,7 @@ from move import *
 from display import *
 
 board = [
-                [BRook, BKnight, Empty, Empty, Empty, Empty, BKnight, BRook],
+                [BRook, BKnight, Empty, BKing, Empty, Empty, BKnight, BRook],
                 [BPawn, WPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn, ],
                 [Empty, BQueen, Empty, Empty, Empty, Empty, Empty, Empty],
                 [Empty, Empty, Empty, BQueen, Empty, Empty, Empty, Empty],
@@ -13,3 +13,4 @@ board = [
 ]
 print(check_win(board))
 print(validateMoveKnight(0,1,-1,-8,board))
+print(validateMoveBP(1,0,4,3,board))

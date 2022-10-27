@@ -1,5 +1,5 @@
 import user
-import move
+from move import *
 import bmove
 from display import *
 
@@ -22,7 +22,7 @@ def singleplayer():
                 case "W":
                     match board[pos1row][pos1col].piece:
                         case "P":
-                            if move.validate_MoveWP(pos1row, pos1col, pos2row, pos2col, board):
+                            if validate_MoveWP(pos1row, pos1col, pos2row, pos2col, board):
                                 board[pos2row][pos2col] = board[pos1row][
                                     pos1col]  # replaces square moved to with this piece chosen
                                 board[pos1row][pos1col] = Empty
@@ -33,14 +33,14 @@ def singleplayer():
                             else:
                                 print("invalid")
                         case "N":
-                            if move.validateMoveKnight(pos1row, pos1col, pos2row, pos2col, board):
+                            if validateMoveKnight(pos1row, pos1col, pos2row, pos2col, board):
                                 print("done")
                                 board[pos2row][pos2col] = board[pos1row][pos1col]
                                 board[pos1row][pos1col] = Empty
                                 p1moved = 1
                                 continue
                         case "R":
-                            if move.validateMoveRK(pos1row, pos1col, pos2row, pos2col, board):
+                            if validateMoveRK(pos1row, pos1col, pos2row, pos2col, board):
                                 board[pos2row][pos2col] = board[pos1row][pos1col]
                                 board[pos1row][pos1col] = Empty
                                 p1moved = 1
@@ -48,7 +48,7 @@ def singleplayer():
                             else:
                                 print("Invalid move")
                         case "Q":
-                            if move.validate_queen(pos1row, pos1col, pos2row, pos2col,board):
+                            if validate_queen(pos1row, pos1col, pos2row, pos2col,board):
                                 board[pos2row][pos2col] = board[pos1row][pos1col]
                                 board[pos1row][pos1col] = Empty
                                 p1moved = 1
@@ -56,21 +56,25 @@ def singleplayer():
                             else:
                                 print("Invalid move")
                         case "B":
-                            if move.validate_bishop(pos1row, pos1col, pos2row, pos2col, board):
+                            if validate_bishop(pos1row, pos1col, pos2row, pos2col, board):
                                 board[pos2row][pos2col] = board[pos1row][pos1col]
                                 board[pos1row][pos1col] = Empty
                                 p1moved = 1
                                 continue
                         case "K":
-                            if move.king_move(pos1row, pos1col, pos2row, pos2col, board):
-                                board[pos2row][pos2col] = board[pos1row][pos1col]
-                                board[pos1row][pos1col] = Empty
-                                p1moved = 1
-                                continue
+                            check_board = generate_checkboard(pos1row, pos1col, board)
+                            if check_check(pos2row,pos2col,check_board):
+                                print("Invalid move, would put in check")
                             else:
-                                print("Invalid move")
+                                if king_move(pos1row, pos1col, pos2row, pos2col, board):
+                                    board[pos2row][pos2col] = board[pos1row][pos1col]
+                                    board[pos1row][pos1col] = Empty
+                                    p1moved = 1
+                                    continue
+                                else:
+                                    print("Invalid move")
 
-        # bmove.blackmove(board)
+        # bblackmove(board)
 
         clear()
         # new_board = display.new_board(board)
@@ -90,7 +94,7 @@ def singleplayer():
                 case "B":
                     match board[pos1row][pos1col].piece:
                         case "P":
-                            if move.validateMoveBP(pos1row, pos1col, pos2row, pos2col, board):
+                            if validateMoveBP(pos1row, pos1col, pos2row, pos2col, board):
                                 board[pos2row][pos2col] = board[pos1row][pos1col]  # replaces square moved to with this piece chosen
                                 board[pos1row][pos1col] = Empty
                                 p2moved = 1
@@ -100,14 +104,14 @@ def singleplayer():
                             else:
                                 print("invalid")
                         case "N":
-                            if move.validateMoveKnight(pos1row, pos1col, pos2row, pos2col, board):
+                            if validateMoveKnight(pos1row, pos1col, pos2row, pos2col, board):
                                 print("done")
                                 board[pos2row][pos2col] = board[pos1row][pos1col]
                                 board[pos1row][pos1col] = Empty
                                 p2moved = 1
                                 continue
                         case "R":
-                            if move.validateMoveRK(pos1row, pos1col, pos2row, pos2col, board):
+                            if validateMoveRK(pos1row, pos1col, pos2row, pos2col, board):
                                 board[pos2row][pos2col] = board[pos1row][pos1col]
                                 board[pos1row][pos1col] = Empty
                                 p2moved = 1
@@ -115,7 +119,7 @@ def singleplayer():
                             else:
                                 print("Invalid move")
                         case "Q":
-                            if move.validate_queen(pos1row, pos1col, pos2row, pos2col,board):
+                            if validate_queen(pos1row, pos1col, pos2row, pos2col,board):
                                 board[pos2row][pos2col] = board[pos1row][pos1col]
                                 board[pos1row][pos1col] = Empty
                                 p2moved = 1
@@ -123,13 +127,13 @@ def singleplayer():
                             else:
                                 print("Invalid move")
                         case "B":
-                            if move.validate_bishop(pos1row, pos1col, pos2row, pos2col, board):
+                            if validate_bishop(pos1row, pos1col, pos2row, pos2col, board):
                                 board[pos2row][pos2col] = board[pos1row][pos1col]
                                 board[pos1row][pos1col] = Empty
                                 p2moved = 1
                                 continue
                         case "K":
-                            if move.king_move(pos1row, pos1col, pos2row, pos2col, board):
+                            if king_move(pos1row, pos1col, pos2row, pos2col, board):
                                 board[pos2row][pos2col] = board[pos1row][pos1col]
                                 board[pos1row][pos1col] = Empty
                                 p2moved = 1
