@@ -1,73 +1,73 @@
 from display import generate_checkboard
 
 
-def validateMoveWP(pos1row, pos1column, pos2row, pos2column, board):
-    if board[pos1row][pos1column].hasMoved and pos2row == pos1row - 2 and pos1column == pos2column:
-        return False
-    if board[pos1row][pos1column].hasMoved == False and pos2row == pos1row - 2 and \
-            board[pos2row][pos2column].piece == "empty":
-        board[pos1row][pos1column].hasMoved = True
-        return True  # this is for "double jump"
-    elif pos2row == pos1row - 1 and board[pos2row][pos2column].piece == "empty":
-        board[pos1row][pos1column].hasMoved = True
-        return True  # this is for moving 1 up, checks if piece moving to is 1 from the pawn, and if its empty
-    elif board[pos2row][pos2column].colour == "B" and board[pos2row][pos2column] == board[pos1row - 1][
-        pos1column + 1]:  # right attack
-        board[pos1row][pos1column].hasMoved = True
-        return True
-    elif board[pos2row][pos2column].colour == "B" and board[pos2row][pos2column] == board[pos1row - 1][
-        pos1column - 1]:  # left attack
-        board[pos1row][pos1column].hasMoved = True
-        return True
-    else:
-        return False
+def validate_MoveWP(pos1row, pos1column, pos2row, pos2column, board):
+    flagleft = 0
+    flagright = 0
+    if board[pos2row][pos2column].colour != "W":
+        if not board[pos1row][pos1column].hasMoved:
+            if pos2row == pos1row - 2:
+                board[pos1row][pos1column].hasMoved = True
+                return True
+        if board[pos1row - 1][pos1column - 1].colour == "B":
+            flagleft = 1
+        if board[pos1row - 1][pos1column + 1].colour == "B":
+            flagright = 1
+        if pos2row == pos1row - 1 and pos2column == pos1column - 1 and flagleft == 1:
+            board[pos1row][pos1column].hasMoved = True
+            return True
+        if pos2row == pos1row - 1 and pos2column == pos1column + 1 and flagright == 1:
+            board[pos1row][pos1column].hasMoved = True
+            return True
+        if pos2row == pos1row - 1:
+            board[pos1row][pos1column].hasMoved = True
+            return True
+        else:
+            return False
 
 
 def validateMoveBP(pos1row, pos1column, pos2row, pos2column, board):
-    # assuming it is a blackpawn{not checking this}
-    if board[pos1row][
-        pos1column].hasMoved and pos2row == pos1row - 2 and pos1column == pos2column:  # check column aswell?
-        return False
-    elif board[pos1row][pos1column].hasMoved == False and board[pos2row][pos2column] == board[pos1row + 2][
-        pos2column] and \
-            board[pos2row][pos2column].piece == "empty":
-        board[pos1row][pos1column].hasMoved = True
-        return True  # this is for "double jump"
-    elif board[pos2row][pos2column] == board[pos1row + 1][pos1column] and board[pos2row][pos2column].piece == "empty":
-        board[pos1row][pos1column].hasMoved = True
-        return True  # this is for moving 1 up, checks if piece moving to is 1 from the pawn, and if its empty
-    elif board[pos2row][pos2column].colour == "W" and board[pos2row][pos2column] == board[pos1row + 1][
-        pos1column + 1]:  # right attack
-        board[pos1row][pos1column].hasMoved = True
-        return True
-    elif board[pos2row][pos2column].colour == "W" and board[pos2row][pos2column] == board[pos1row + 1][
-        pos1column - 1]:  # left attack
-        board[pos1row][pos1column].hasMoved = True
-        return True
-    else:
-        return False
+    flagleft = 0
+    flagright = 0
+    if board[pos2row][pos2column].colour != "B":
+        if not board[pos1row][pos1column].hasMoved:
+            if pos2row == pos1row + 2:
+                board[pos1row][pos1column].hasMoved = True
+                return True
+        if board[pos1row + 1][pos1column - 1].colour == "W":
+            flagleft = 1
+        if board[pos1row + 1][pos1column + 1].colour == "W":
+            flagright = 1
+        if pos2row == pos1row + 1 and pos2column == pos1column - 1 and flagleft == 1:
+            board[pos1row][pos1column].hasMoved = True
+            return True
+        if pos2row == pos1row + 1 and pos2column == pos1column + 1 and flagright == 1:
+            board[pos1row][pos1column].hasMoved = True
+            return True
+        if pos2row == pos1row + 1:
+            board[pos1row][pos1column].hasMoved = True
+            return True
+        else:
+            return False
 
 
 def validateMoveKnight(pos1row, pos1column, pos2row, pos2column,  # pycharm formatting is why \
                        board):  # not seperate colour, can do this in the function
     # checks if piece moving to is not friendly or its empty
+
     if board[pos2row][pos2column].colour != board[pos1row][pos1column].colour:
         # 8 possible moves, using or operator to check, we know its empty cause of above^
         # up move /left right
-        if board[pos2row][pos2column] == board[pos1row - 2][pos1column - 1] or board[pos2row][pos2column] == \
-                board[pos1row - 2][pos1column + 1]:
+        if pos2row == pos1row - 2 and pos2column == pos1column - 1 or pos2row == pos1row - 2 and pos2column == pos1column + 1:
             return True
         # right move , up down
-        if board[pos2row][pos2column] == board[pos1row + 1][pos1column + 2] or board[pos2row][pos2column] == \
-                board[pos1row - 1][pos1column + 2]:
+        if pos2row == pos1row + 1 and pos2column == pos1column + 2 or pos2row == pos1row - 1 and pos2column == pos1column + 2:
             return True
         # down move, left right
-        if board[pos2row][pos2column] == board[pos1row + 2][pos1column - 1] or board[pos2row][pos2column] == \
-                board[pos1row + 2][pos1column + 1]:
+        if pos2row == pos1row + 2 and pos2column == pos1column - 1 or pos2row == pos1row + 2 and pos2column == pos1column + 1:
             return True
         # left move, up , down
-        if board[pos2row][pos2column] == board[pos1row - 1][pos1column - 2] or board[pos2row][pos2column] == \
-                board[pos1row + 1][pos1column - 2]:
+        if pos2row == pos1row - 1 and pos2column == pos1column - 2 or pos2row == pos1row + 1 and pos2column == pos1column - 2:
             return True
         else:
             return False
@@ -359,7 +359,7 @@ def check_win(board):  # checks legal moves for king, if = 0, 8 possible moves w
             if king_move(king_row, king_col, king_row + 1, king_col + 1, board):
                 return False
             else:
-                return True #if king has no possible moves and check== true , checkmate
+                return True  # if king has no possible moves and check== true , checkmate
 
     else:
         return False
