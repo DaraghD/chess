@@ -42,7 +42,7 @@ def generate():
     return board
 
 
-def generate_checkboard(kingrow, kingcol,board):
+def generate_checkboard(kingrow, kingcol, board):
     board[kingrow][kingcol] = Empty
     check_board = board
     return check_board  # board without king
@@ -122,7 +122,8 @@ def new_board(board):
 
 
 def show_emoji(board):
-    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BN": "♞", "WR": "♖", "BR": "♜", "WQ": "♕", "WB": "♗", "WK": "♔", "BK": "♚", "BQ": "♛","BB": "♝"}
+    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BN": "♞", "WR": "♖", "BR": "♜", "WQ": "♕", "WB": "♗", "WK": "♔",
+                  "BK": "♚", "BQ": "♛", "BB": "♝"}
     i = 0
     x = 0
     c = 0
@@ -151,8 +152,13 @@ def show_emoji(board):
         if i > 7:
             break
 
+
+col_dict = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5, "G": 6, "H": 7}
+
+
 def show_emoji_black(board):
-    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BN": "♞", "WR": "♖", "BR": "♜", "WQ": "♕", "WB": "♗", "WK": "♔", "BK": "♚", "BQ": "♛","BB": "♝"}
+    emoji_dict = {"WP": "♙", "BP": "♟", "WN": "♘", "BN": "♞", "WR": "♖", "BR": "♜", "WQ": "♕", "WB": "♗", "WK": "♔",
+                  "BK": "♚", "BQ": "♛", "BB": "♝"}
     i = 7
     x = 0
     c = 0

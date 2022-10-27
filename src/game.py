@@ -11,11 +11,13 @@ def singleplayer():
 
         show_emoji(board)
         while p1moved == 0:
-            pos1row = int(input("Enter the rank for piece to move:"))
-            pos1col = int(input("Enter the file for piece to move:"))
-            pos2row = int(input("Enter the rank for square to move:"))
-            pos2col = int(input("Enter the file for square to move:"))
 
+            pos1row = (int(input("Enter the rank for piece to move:")) - 1)
+            pos1col = input("Enter the file for piece to move:").upper()
+            pos2row = (int(input("Enter the rank for square to move:")) - 1)
+            pos2col = input("Enter the file for square to move:").upper()
+            pos1col = col_dict[pos1col]
+            pos2col = col_dict[pos2col]
             match board[pos1row][pos1col].colour:
                 case "W":
                     match board[pos1row][pos1col].piece:
