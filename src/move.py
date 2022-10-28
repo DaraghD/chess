@@ -275,7 +275,8 @@ def king_move(pos1row, pos1col, pos2row, pos2col, board):
     return False
 
 
-def check_check(pos2row, pos2col, check_board):  # first 2 arguments can be any position/future/present
+def check_check(pos2row, pos2col,
+                check_board):  # first 2 arguments can be any position/future/present, returns true if any piece can move to the pos2row,pos2col given
     i = 0
     x = 0
     for row in check_board:
@@ -303,34 +304,30 @@ def check_check(pos2row, pos2col, check_board):  # first 2 arguments can be any 
                                 return True
 
 
-def find_kings(board):
-    rowi = 0
-    colx = 0
-    king_counter = 0
-    while king_counter < 2:
-        for row in board:
-            for col in row:
-                match col.colour:
-                    case 'W':
-                        match col.piece:
-                            case 'K':
-                                king_counter += 1
-                                king_row = rowi
-                                king_col = colx
-                                return king_row, king_col  # only works for white now
-                        if colx == 7:
-                            colx = 0
-                        else:
-                            colx += 1
-            rowi += 1
+def find_king_w(board):
+    for row in range(0, 9, 1):
+        for col in range(0, 8, 1):
+            if board[row][col].piece == "K" and board[row][col].colour == "W":
+                print(row)
+                print(col)
+                return row, col
 
 
-def check_win_white(board):  # checks legal moves for king, 8 possible moves with king, if check
-    king_pos = find_kings(board)
+def find_king_b(board):
+    for row in range(0, 9, 1):
+        for col in range(0, 8, 1):
+            if board[row][col].piece == "K" and board[row][col].colour == "B":
+                print(row)
+                print(col)
+                return row, col
+
+
+def check_win_black(board):  # checks legal moves for king, 8 possible moves with king, checks if black won
+    king_pos = find_king_w(board)
     king_row = king_pos[0]
     king_col = king_pos[1]
     print(king_pos)
-    if check_check(king_row, king_col,board):  # checking all 8 possible moves for king, if any are true return false as king is not in checkkmate
+    if check_check(king_row, king_col,board):  # checking all 8 possible moves for king, if any are true return false as king is not in checkmate
         if check_check(king_row - 1, king_col - 1, board):
             return False
         if check_check(king_row, king_col - 1, board):
@@ -355,9 +352,12 @@ def check_win_white(board):  # checks legal moves for king, 8 possible moves wit
 
 
 """""
-def check_win_black(board):
-    king_row = bking_row
-    king_col = bking_col
+def check_win_white(board): checks if white won
+    king_pos = find_king_b(board)
+    king_row = king_pos[0]
+    king_col = king_pos[1]
+    print(king_pos)
+
     if check_check(wking_row, wking_col, board):
         if check_check(king_row - 1, king_col - 1, board):
             return False
