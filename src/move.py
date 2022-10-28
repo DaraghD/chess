@@ -305,7 +305,7 @@ def check_check(pos2row, pos2col,
 
 
 def find_king_w(board):
-    for row in range(0, 9, 1):
+    for row in range(0, 8, 1):
         for col in range(0, 8, 1):
             if board[row][col].piece == "K" and board[row][col].colour == "W":
                 print(row)
@@ -314,7 +314,7 @@ def find_king_w(board):
 
 
 def find_king_b(board):
-    for row in range(0, 9, 1):
+    for row in range(0, 8, 1):
         for col in range(0, 8, 1):
             if board[row][col].piece == "K" and board[row][col].colour == "B":
                 print(row)
@@ -323,26 +323,27 @@ def find_king_b(board):
 
 
 def check_win_black(board):  # checks legal moves for king, 8 possible moves with king, checks if black won
-    king_pos = find_king_w(board)
+    king_pos = find_king_w(board)  # returns tuple
     king_row = king_pos[0]
     king_col = king_pos[1]
     print(king_pos)
-    if check_check(king_row, king_col,board):  # checking all 8 possible moves for king, if any are true return false as king is not in checkmate
-        if check_check(king_row - 1, king_col - 1, board):
+    checkboard = generate_checkboard(king_row, king_col, board)
+    if check_check(king_row, king_col, checkboard):  # checking all 8 possible moves for king, if any are true return false as king is not in checkmate
+        if not check_check(king_row - 1, king_col - 1, checkboard):
             return False
-        if check_check(king_row, king_col - 1, board):
+        if not check_check(king_row, king_col - 1, checkboard):
             return False
-        if check_check(king_row + 1, king_col - 1, board):
+        if not check_check(king_row + 1, king_col - 1, checkboard):
             return False
-        if check_check(king_row + 1, king_col, board):
+        if not check_check(king_row + 1, king_col, checkboard):
             return False
-        if check_check(king_row - 1, king_col, board):
+        if not check_check(king_row - 1, king_col, checkboard):
             return False
-        if check_check(king_row - 1, king_col + 1, board):
+        if not check_check(king_row - 1, king_col + 1, checkboard):
             return False
-        if check_check(king_row, king_col + 1, board):
+        if not check_check(king_row, king_col + 1, checkboard):
             return False
-        if check_check(king_row + 1, king_col + 1, board):
+        if not check_check(king_row + 1, king_col + 1, checkboard):
             return False
         else:
             return True  # if king has no possible moves and check== true , checkmate

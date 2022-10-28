@@ -6,7 +6,7 @@ board = [
                 [BPawn, WPawn, BPawn, BPawn, BPawn, BPawn, BPawn, BPawn],
                 [Empty, BQueen, Empty, Empty, Empty, Empty, Empty, Empty],
                 [Empty, Empty, Empty, BQueen, Empty, Empty, Empty, Empty],
-                [Empty, Empty, BQueen, Empty, BQueen, Empty, WKing, Empty],
+                [Empty, Empty, BQueen, WKing, BQueen, Empty, Empty, Empty],
                 [Empty, Empty, Empty, BQueen, Empty, Empty, Empty, Empty],
                 [WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, WPawn, BQueen],
                 [WRook, WKnight, WBishop, WQueen, Empty, WBishop, BQueen, Empty],
