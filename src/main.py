@@ -1,5 +1,5 @@
 from display import *
-from game import *
+from game import singleplayer
 
 
 def main():
