@@ -127,7 +127,7 @@ def show_emoji(board):
     i = 0
     x = 0
     c = 0
-    n = 8
+    n = 1
 
     print("  A  B  C  D  E  F  G  H")
 
@@ -145,7 +145,7 @@ def show_emoji(board):
             i += 1
             print(f"| {n}")
             x = 0
-            n -= 1
+            n += 1
         else:
             c += 1
             x += 1
