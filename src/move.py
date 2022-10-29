@@ -239,12 +239,15 @@ def validate_bishop(pos1row, pos1col, pos2row, pos2col,
 
 
 def validate_queen(pos1row, pos1col, pos2row, pos2col, board):
+
     if pos1row == pos2row or pos1col == pos2col:
         if line_move(pos1row, pos1col, pos2row, pos2col, board):
             return True
         else:
             return False
     if not pos1row == pos2row or pos1col == pos2col:
+        if not abs(pos1row - pos2row) == abs(pos1col - pos2col): #queen moves were not working, might be a bad fix
+            return False
         if diagonal_move(pos1row, pos1col, pos2row, pos2col, board):
             return True
         else:
@@ -294,6 +297,8 @@ def check_check(pos2row, pos2col, check_board):
                     kingpositions = "attacking {rowk} and {colk}"
                     print(kingpositions.format(rowk=pos2row, colk=pos2col))
                     if validate_queen(queen_list[i], queen_list[i + 1], pos2row, pos2col, check_board):
+                        queen_txt = "This queen attacking, {rowq}, {colq}"
+                        print(queen_txt.format(rowq = queen_list[i],colq = queen_list[i+1]))
                         return True
 
 
