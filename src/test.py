@@ -19,6 +19,5 @@ board = [
 
 
 print(check_win_black(board))
-
 #check_check wont work here cause we are running it only in game.py when a move is made
 # which dosent happen when just validating king_move ...

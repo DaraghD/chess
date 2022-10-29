@@ -92,8 +92,7 @@ def validateMoveRK(pos1row, pos1column, pos2row, pos2column,
                 row = 0
                 while row < abs(pos1row - pos2row) - 1:
                     row = row + 1
-                    if board[pos1row + row][
-                        pos1column].piece == "empty":  # empty as we already checked for attacking in first if statement
+                    if board[pos1row + row][pos1column].piece == "empty":  # empty as we already checked for attacking in first if statement
                         if row == abs(pos1row - pos2row) - 1:
                             return True
                         continue
@@ -138,8 +137,7 @@ def validateMoveB(pos1row,pos1column,pos2row,pos2column,board):
 # using snake case
 # purpose of this function is too make bishop,rook,queen validate move functions more readable by isolating these checks in their own function
 def line_move(pos1row, pos1column, pos2row, pos2column, board):  # this is a complete copy of the rk function
-    if board[pos1row][pos1column].colour != board[pos2row][
-        pos2column].colour:
+    if board[pos1row][pos1column].colour != board[pos2row][pos2column].colour:
         if abs(pos1row - pos2row) - 1 == 0:
             return True
         if abs(pos1column - pos2column) - 1 == 0:
@@ -160,8 +158,7 @@ def line_move(pos1row, pos1column, pos2row, pos2column, board):  # this is a com
                 row = 0
                 while row < abs(pos1row - pos2row) - 1:
                     row += 1
-                    if board[pos1row + row][
-                        pos1column].piece == "empty":
+                    if board[pos1row + row][pos1column].piece == "empty":
                         if row == abs(pos1row - pos2row) - 1:
                             return True
                         continue
@@ -256,8 +253,8 @@ def validate_queen(pos1row, pos1col, pos2row, pos2col, board):
 def king_move(pos1row, pos1col, pos2row, pos2col, board):
     if board[pos2row][pos2col].colour == board[pos1row][pos1col].colour:
         return False
-    check_board = generate_checkboard(pos1row, pos1col, board)
-    #    if check_check(pos2row, pos2col, check_board):
+    # check_board = generate_checkboard(pos1row, pos1col, board)
+    #    if check_check(pos2row, pos2col, check_board): moved this to main after king move
     #       print("MOVE WOULD PUT IN CHECK")
     #      return False
     if abs(pos1row - pos2row) == 1:
@@ -274,34 +271,31 @@ def king_move(pos1row, pos1col, pos2row, pos2col, board):
 
     return False
 
+#the problem with this function is that as soon as we find one piece the function returns true, and does not check the rest
+ #first 2 arguments can be any position/future/present, returns true if any piece can move to the pos2row,pos2col given
 
-def check_check(pos2row, pos2col,
-                check_board):  # first 2 arguments can be any position/future/present, returns true if any piece can move to the pos2row,pos2col given
-    i = 0
-    x = 0
-    for row in check_board:
-        for col in row:
-            match col.colour:
-                case 'B':
-                    match col.piece:
-                        case 'Q':
-                            if validate_queen(i, x, pos2row, pos2col, check_board):
-                                return True
-                        case 'B':
-                            if validate_bishop(i, x, pos2row, pos2col, check_board):
-                                return True
-                        case 'P':
-                            if validateMoveBP(i, x, pos2row, pos2col, check_board):
-                                return True
-                        case 'N':
-                            if validateMoveKnight(i, x, pos2row, pos2col, check_board):
-                                return True
-                        case 'R':
-                            if validateMoveRK(i, x, pos2row, pos2col, check_board):
-                                return True
-                        case 'K':
-                            if king_move(i, x, pos2row, pos2col, check_board):
-                                return True
+def check_check(pos2row, pos2col,check_board):
+    queen_list = []
+    counter = 0
+    for row in range(0,8,1):
+        for col in range(0,8,1):
+            if check_board[row][col].piece == "Q" and check_board[row][col].colour == "B":
+                queen_list.append(row)
+                queen_list.append(col)
+                print(len(queen_list))
+            if row == 7 and col == 7: #if we completed the loops
+                print(queen_list)
+                for i in range(0,len(queen_list),2):
+                    #while counter < (len(queen_list)/2):
+                    rowcolprint = "row: {row1} , col: {col1}"
+                    print(rowcolprint.format(row1=queen_list[i],col1=queen_list[i+1]))
+                    kingpositions = "attacking {rowk} and {colk}"
+                    print(kingpositions.format(rowk=pos2row,colk=pos2col))
+                    if validate_queen(queen_list[i],queen_list[i+1],pos2row,pos2col,check_board):
+                        return True
+
+
+# def find_pieces_black(board):
 
 
 def find_king_w(board):
@@ -327,29 +321,48 @@ def check_win_black(board):  # checks legal moves for king, 8 possible moves wit
     king_row = king_pos[0]
     king_col = king_pos[1]
     print(king_pos)
-    checkboard = generate_checkboard(king_row, king_col, board)
-    if check_check(king_row, king_col, checkboard):  # checking all 8 possible moves for king, if any are true return false as king is not in checkmate
-        if not check_check(king_row - 1, king_col - 1, checkboard):
-            return False
-        if not check_check(king_row, king_col - 1, checkboard):
-            return False
-        if not check_check(king_row + 1, king_col - 1, checkboard):
-            return False
-        if not check_check(king_row + 1, king_col, checkboard):
-            return False
-        if not check_check(king_row - 1, king_col, checkboard):
-            return False
-        if not check_check(king_row - 1, king_col + 1, checkboard):
-            return False
-        if not check_check(king_row, king_col + 1, checkboard):
-            return False
-        if not check_check(king_row + 1, king_col + 1, checkboard):
-            return False
-        else:
-            return True  # if king has no possible moves and check== true , checkmate
+    counter = 0
+    checkboard = generate_checkboard(king_row, king_col, board) #stalemate would be counter ==8 and initial check false
+    if check_check(king_row, king_col, checkboard): # something here is wrong xd # checking all 8 possible moves for king, if any are true return false as king is not in checkmate
+        checkboard = generate_checkboard(king_row-1,king_col-1,board)
+        if check_check(king_row - 1, king_col - 1, checkboard):
+            counter +=1
 
-    else:
-        return False
+        checkboard = generate_checkboard(king_row, king_col - 1, board)
+        if check_check(king_row, king_col - 1, checkboard):
+            counter += 1
+
+        checkboard = generate_checkboard(king_row + 1, king_col - 1, board)
+        if check_check(king_row + 1, king_col - 1, checkboard):
+            counter += 1
+
+        checkboard = generate_checkboard(king_row + 1, king_col, board)
+        if check_check(king_row + 1, king_col, checkboard):
+            counter += 1
+
+        checkboard = generate_checkboard(king_row - 1, king_col, board)
+        if check_check(king_row - 1, king_col, checkboard):
+            counter += 1
+
+        checkboard = generate_checkboard(king_row - 1, king_col + 1, board)
+        if check_check(king_row - 1, king_col + 1, checkboard):
+            counter += 1
+
+        checkboard = generate_checkboard(king_row,king_col+1,board)
+        if check_check(king_row, king_col + 1, checkboard):
+            counter += 1
+
+        checkboard = generate_checkboard(king_row+1,king_col+1,board)
+        if check_check(king_row + 1, king_col + 1, checkboard):
+            counter += 1
+
+        if counter == 8:
+            print("BLACK WINS")
+            return True
+        else:
+            print(counter)
+            return False
+         # if king has no possible moves and check== true , checkmate
 
 
 """""
