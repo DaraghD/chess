@@ -92,7 +92,8 @@ def validateMoveRK(pos1row, pos1column, pos2row, pos2column,
                 row = 0
                 while row < abs(pos1row - pos2row) - 1:
                     row = row + 1
-                    if board[pos1row + row][pos1column].piece == "empty":  # empty as we already checked for attacking in first if statement
+                    if board[pos1row + row][
+                        pos1column].piece == "empty":  # empty as we already checked for attacking in first if statement
                         if row == abs(pos1row - pos2row) - 1:
                             return True
                         continue
@@ -271,27 +272,28 @@ def king_move(pos1row, pos1col, pos2row, pos2col, board):
 
     return False
 
-#the problem with this function is that as soon as we find one piece the function returns true, and does not check the rest
- #first 2 arguments can be any position/future/present, returns true if any piece can move to the pos2row,pos2col given
 
-def check_check(pos2row, pos2col,check_board):
+# the problem with this function is that as soon as we find one piece the function returns true, and does not check the rest
+# first 2 arguments can be any position/future/present, returns true if any piece can move to the pos2row,pos2col given
+
+def check_check(pos2row, pos2col, check_board):
     queen_list = []
     counter = 0
-    for row in range(0,8,1):
-        for col in range(0,8,1):
+    for row in range(0, 8, 1):
+        for col in range(0, 8, 1):
             if check_board[row][col].piece == "Q" and check_board[row][col].colour == "B":
                 queen_list.append(row)
                 queen_list.append(col)
                 print(len(queen_list))
-            if row == 7 and col == 7: #if we completed the loops
+            if row == 7 and col == 7:  # if we completed the loops
                 print(queen_list)
-                for i in range(0,len(queen_list),2):
-                    #while counter < (len(queen_list)/2):
+                for i in range(0, len(queen_list), 2):
+                    # while counter < (len(queen_list)/2):
                     rowcolprint = "row: {row1} , col: {col1}"
-                    print(rowcolprint.format(row1=queen_list[i],col1=queen_list[i+1]))
+                    print(rowcolprint.format(row1=queen_list[i], col1=queen_list[i + 1]))
                     kingpositions = "attacking {rowk} and {colk}"
-                    print(kingpositions.format(rowk=pos2row,colk=pos2col))
-                    if validate_queen(queen_list[i],queen_list[i+1],pos2row,pos2col,check_board):
+                    print(kingpositions.format(rowk=pos2row, colk=pos2col))
+                    if validate_queen(queen_list[i], queen_list[i + 1], pos2row, pos2col, check_board):
                         return True
 
 
@@ -320,41 +322,70 @@ def check_win_black(board):  # checks legal moves for king, 8 possible moves wit
     king_pos = find_king_w(board)  # returns tuple
     king_row = king_pos[0]
     king_col = king_pos[1]
+    print("I AM KING POS")
     print(king_pos)
     counter = 0
-    checkboard = generate_checkboard(king_row, king_col, board) #stalemate would be counter ==8 and initial check false
-    if check_check(king_row, king_col, checkboard): # something here is wrong xd # checking all 8 possible moves for king, if any are true return false as king is not in checkmate
-        checkboard = generate_checkboard(king_row-1,king_col-1,board)
-        if check_check(king_row - 1, king_col - 1, checkboard):
-            counter +=1
+    checkboard = generate_checkboard(king_row, king_col,
+                                     board)  # stalemate would be counter ==8 and initial check false
+    if check_check(king_row, king_col,
+                   checkboard):  # something here is wrong xd # checking all 8 possible moves for king, if any are true return false as king is not in checkmate
 
-        checkboard = generate_checkboard(king_row, king_col - 1, board)
-        if check_check(king_row, king_col - 1, checkboard):
+        if king_row -1 > 7 or king_col-1 > 7 or king_row -1 < 0 or king_col-1 < 0:
             counter += 1
+        else:
+            checkboard = generate_checkboard(king_row - 1, king_col - 1, board)
+            if check_check(king_row - 1, king_col - 1, checkboard):
+                counter += 1
 
-        checkboard = generate_checkboard(king_row + 1, king_col - 1, board)
-        if check_check(king_row + 1, king_col - 1, checkboard):
+        if king_row > 7 or king_col-1 > 7 or king_row < 0 or king_col-1 < 0:
             counter += 1
+        else:
+            checkboard = generate_checkboard(king_row, king_col - 1, board)
+            if check_check(king_row, king_col - 1, checkboard):
+                counter += 1
 
-        checkboard = generate_checkboard(king_row + 1, king_col, board)
-        if check_check(king_row + 1, king_col, checkboard):
+        if king_row + 1 > 7 or king_col-1 > 7 or king_row + 1 < 0 or king_col-1 < 0:
             counter += 1
+        else:
+            checkboard = generate_checkboard(king_row + 1, king_col - 1, board)
+            if check_check(king_row + 1, king_col - 1, checkboard):
+                counter += 1
 
-        checkboard = generate_checkboard(king_row - 1, king_col, board)
-        if check_check(king_row - 1, king_col, checkboard):
+        if king_row + 1 > 7 or king_col > 7 or king_row + 1 < 0 or king_col < 0:
             counter += 1
+        else:
+            checkboard = generate_checkboard(king_row + 1, king_col, board)
+            if check_check(king_row + 1, king_col, checkboard):
+                counter += 1
 
-        checkboard = generate_checkboard(king_row - 1, king_col + 1, board)
-        if check_check(king_row - 1, king_col + 1, checkboard):
+        if king_row - 1 > 7 or king_col > 7 or king_row - 1 < 0 or king_col < 0:
             counter += 1
+        else:
+            checkboard = generate_checkboard(king_row - 1, king_col, board)
+            if check_check(king_row - 1, king_col, checkboard):
+                counter += 1
 
-        checkboard = generate_checkboard(king_row,king_col+1,board)
-        if check_check(king_row, king_col + 1, checkboard):
+        if king_row - 1 > 7 or king_col+1 > 7 or king_row -1  < 0 or king_col +1 < 0:
             counter += 1
+        else:
+            checkboard = generate_checkboard(king_row - 1, king_col + 1, board)
+            if check_check(king_row - 1, king_col + 1, checkboard):
+                counter += 1
 
-        checkboard = generate_checkboard(king_row+1,king_col+1,board)
-        if check_check(king_row + 1, king_col + 1, checkboard):
+
+        if king_row > 7 or king_col+1 > 7 or king_row < 0 or king_col+1 < 0:
             counter += 1
+        else:
+            checkboard = generate_checkboard(king_row, king_col + 1, board)
+            if check_check(king_row, king_col + 1, checkboard):
+                counter += 1
+
+        if king_row + 1 > 7 or king_col +1 > 7 or king_row + 1 < 0 or king_col+1 < 0:
+            counter += 1
+        else:
+            checkboard = generate_checkboard(king_row + 1, king_col + 1, board)
+            if check_check(king_row + 1, king_col + 1, checkboard):
+                counter += 1
 
         if counter == 8:
             print("BLACK WINS")
@@ -362,7 +393,7 @@ def check_win_black(board):  # checks legal moves for king, 8 possible moves wit
         else:
             print(counter)
             return False
-         # if king has no possible moves and check== true , checkmate
+        # if king has no possible moves and check== true , checkmate
 
 
 """""
