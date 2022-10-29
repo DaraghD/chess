@@ -192,6 +192,8 @@ def line_move(pos1row, pos1column, pos2row, pos2column, board):  # this is a com
 
 
 def diagonal_move(pos1row, pos1col, pos2row, pos2col, board):
+    if not abs(pos1row - pos2row) == abs(pos1col - pos2col):
+        return False
     tile_gap = abs(pos1row - pos2row) - 1
     if board[pos1row][pos1col].colour != board[pos2row][pos2col].colour:
         if tile_gap == 0 and pos1row != pos2row and pos1col != pos2col:

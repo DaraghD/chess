@@ -15,6 +15,7 @@ board = [
 
 board = generate_checkboard(0,7,board)
 print(validate_queen(2,1,0,7,board)) #somehow this is valid move
+print(diagonal_move(2,1,0,7,board))
 
 queen_validate1 = "This is the result of {bool}"
 print(queen_validate1.format(bool = validate_queen(2,1,0,7,board)))
