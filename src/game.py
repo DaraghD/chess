@@ -69,7 +69,7 @@ def singleplayer():
                                 continue
                         case "K":
                             check_board = generate_checkboard(pos1row, pos1col, board)
-                            if check_check(pos2row, pos2col, check_board):
+                            if check_check(pos2row, pos2col, check_board,"B"):
                                 print("Invalid move, would put in check")
                             else:
                                 if king_move(pos1row, pos1col, pos2row, pos2col, board):
@@ -147,7 +147,7 @@ def singleplayer():
                                 continue
                         case "K":
                             check_board = generate_checkboard(pos1row, pos1col, board)
-                            if check_check(pos2row, pos2col, check_board):
+                            if check_check(pos2row, pos2col, check_board,"W"):
                                 print("Invalid move, would put in check")
                             else:
                                 if king_move(pos1row, pos1col, pos2row, pos2col, board):

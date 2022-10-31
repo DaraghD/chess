@@ -248,8 +248,6 @@ def validate_queen(pos1row, pos1col, pos2row, pos2col, board):
         else:
             return False
     if not pos1row == pos2row or pos1col == pos2col:
-        if not abs(pos1row - pos2row) == abs(pos1col - pos2col): #queen moves were not working, might be a bad fix
-            return False
         if diagonal_move(pos1row, pos1col, pos2row, pos2col, board):
             return True
         else:
@@ -277,8 +275,6 @@ def king_move(pos1row, pos1col, pos2row, pos2col, board):
 
     return False
 
-
-# the problem with this function is that as soon as we find one piece the function returns true, and does not check the rest
 # first 2 arguments can be any position/future/present, returns true if any piece can move to the pos2row,pos2col given
 def find_piece(piece:str,colour:str,check_board): #piece and colour passed in as strings
     piece_list = []
@@ -290,7 +286,7 @@ def find_piece(piece:str,colour:str,check_board): #piece and colour passed in as
             if row == 7 and col == 7:
                 return piece_list # finds piece, returns list of the coordinates
 
-def check_check(pos2row, pos2col, check_board,colour):# colour for check_check determines which pieces will try to move
+def check_check(pos2row, pos2col, check_board,colour:str):# colour for check_check determines which pieces will try to move
     pawn_list = find_piece("P",colour,check_board)
     for i in range(0, len(pawn_list),2):
         if colour == "W":
@@ -312,7 +308,8 @@ def check_check(pos2row, pos2col, check_board,colour):# colour for check_check d
         if validateMoveKnight(knight_list[i],knight_list[i+1],pos2row,pos2col,check_board):
             return True
     queen_list = find_piece("Q",colour,check_board)
-    for i in range(0,len(knight_list),2):
+    for i in range(0,len(queen_list),2):
+        print(f"queen list : {queen_list}")
         if validate_queen(queen_list[i], queen_list[i + 1], pos2row, pos2col, check_board):
             return True
     else:
@@ -351,67 +348,76 @@ def check_win(board,colour:str): #colour passed in as string, if white passed in
     print(king_list)
     print(f"we are trying to move to {king_row},{king_col}")
     counter = 0
-    checkboard = generate_checkboard(king_row,king_col,board)
-    if check_check(king_row,king_col,checkboard,colour):
+    checkboard0 = generate_checkboard(king_row,king_col,board)
+    if check_check(king_row,king_col,checkboard0,colour):
         check = True
+        print("is in check")
     if king_row -1 > 7 or king_col-1 > 7 or king_row -1 < 0 or king_col-1 < 0:
         counter += 1
     else:
-        checkboard = generate_checkboard(king_row - 1, king_col - 1, board)
-        if check_check(king_row - 1, king_col - 1, checkboard,colour):
+        checkboard1 = generate_checkboard(king_row - 1, king_col - 1, board)
+        if check_check(king_row - 1, king_col - 1, checkboard1,colour):
+            print("top left")
             counter += 1
 
     if king_row > 7 or king_col-1 > 7 or king_row < 0 or king_col-1 < 0:
         counter += 1
     else:
-        checkboard = generate_checkboard(king_row, king_col - 1, board)
-        if check_check(king_row, king_col - 1, checkboard,colour):
+        checkboard2 = generate_checkboard(king_row, king_col - 1, board)
+        if check_check(king_row, king_col - 1, checkboard2,colour):
+            print("left")
             counter += 1
 
     if king_row + 1 > 7 or king_col-1 > 7 or king_row + 1 < 0 or king_col-1 < 0:
         counter += 1
     else:
-        checkboard = generate_checkboard(king_row + 1, king_col - 1, board)
-        if check_check(king_row + 1, king_col - 1, checkboard,colour):
+        checkboard3 = generate_checkboard(king_row + 1, king_col - 1, board)
+        if check_check(king_row + 1, king_col - 1, checkboard3,colour):
+            print("bot left")
             counter += 1
 
     if king_row + 1 > 7 or king_col > 7 or king_row + 1 < 0 or king_col < 0:
         counter += 1
     else:
-        checkboard = generate_checkboard(king_row + 1, king_col, board)
-        if check_check(king_row + 1, king_col, checkboard,colour):
+        checkboard4 = generate_checkboard(king_row + 1, king_col, board)
+        if check_check(king_row + 1, king_col, checkboard4,colour):
+            print("bot")
             counter += 1
 
     if king_row - 1 > 7 or king_col > 7 or king_row - 1 < 0 or king_col < 0:
         counter += 1
     else:
-        checkboard = generate_checkboard(king_row - 1, king_col, board)
-        if check_check(king_row - 1, king_col, checkboard,colour):
+        checkboard5 = generate_checkboard(king_row - 1, king_col, board)
+        if check_check(king_row - 1, king_col, checkboard5,colour):
+            print("top")
             counter += 1
 
-    if king_row - 1 > 7 or king_col+1 > 7 or king_row -1  < 0 or king_col +1 < 0:
+    if king_row - 1 > 7 or king_col+1 > 7 or king_row -1 < 0 or king_col +1 < 0:
         counter += 1
     else:
-        checkboard = generate_checkboard(king_row - 1, king_col + 1, board)
-        if check_check(king_row - 1, king_col + 1, checkboard,colour):
+        checkboard6 = generate_checkboard(king_row - 1, king_col + 1, board)
+        if check_check(king_row - 1, king_col + 1, checkboard6,colour):
+            print("top right")
             counter += 1
 
 
     if king_row > 7 or king_col+1 > 7 or king_row < 0 or king_col+1 < 0:
         counter += 1
     else:
-        checkboard = generate_checkboard(king_row, king_col + 1, board)
-        if check_check(king_row, king_col + 1, checkboard,colour):
+        checkboard7 = generate_checkboard(king_row, king_col + 1, board)
+        if check_check(king_row, king_col + 1, checkboard7,colour):
+            print("right")
             counter += 1
 
     if king_row + 1 > 7 or king_col +1 > 7 or king_row + 1 < 0 or king_col+1 < 0:
         counter += 1
     else:
-        checkboard = generate_checkboard(king_row + 1, king_col + 1, board)
-        if check_check(king_row + 1, king_col + 1, checkboard,colour):
+        checkboard8 = generate_checkboard(king_row + 1, king_col + 1, board)
+        if check_check(king_row + 1, king_col + 1, checkboard8,colour):
+            print("bot right")
             counter += 1
 
-    if counter == 8 and  check == True:
+    if counter == 8 and check:
         print(f"{colour} WINS")
         return True
     if counter == 8 and not check:
